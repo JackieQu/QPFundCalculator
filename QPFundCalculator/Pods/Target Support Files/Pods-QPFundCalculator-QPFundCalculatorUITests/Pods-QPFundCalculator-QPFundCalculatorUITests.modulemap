@@ -1,0 +1,6 @@
+framework module Pods_QPFundCalculator_QPFundCalculatorUITests {
+  umbrella header "Pods-QPFundCalculator-QPFundCalculatorUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

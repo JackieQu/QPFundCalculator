@@ -1,0 +1,1037 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		28AAC9F325937BE3005534B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28AAC9F125937BE3005534B4 /* Main.storyboard */; };
+		28AAC9F625937BE3005534B4 /* QPFundCalculator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28AAC9F425937BE3005534B4 /* QPFundCalculator.xcdatamodeld */; };
+		28AAC9F825937BE8005534B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28AAC9F725937BE8005534B4 /* Assets.xcassets */; };
+		28AAC9FB25937BE8005534B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28AAC9F925937BE8005534B4 /* LaunchScreen.storyboard */; };
+		28AACA0825937BE9005534B4 /* QPFundCalculatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AACA0725937BE9005534B4 /* QPFundCalculatorTests.m */; };
+		28AACA1325937BE9005534B4 /* QPFundCalculatorUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AACA1225937BE9005534B4 /* QPFundCalculatorUITests.m */; };
+		28AACA4225937CE9005534B4 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AACA3225937CE9005534B4 /* SceneDelegate.m */; };
+		28AACA4325937CE9005534B4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AACA3325937CE9005534B4 /* main.m */; };
+		28AACA4425937CE9005534B4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AACA3425937CE9005534B4 /* AppDelegate.m */; };
+		28AACA7925938A2F005534B4 /* QPCacheHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AACA7225938A2E005534B4 /* QPCacheHelper.m */; };
+		28AACA7A25938A2F005534B4 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AACA7325938A2F005534B4 /* UIView+Frame.m */; };
+		28AACA7B25938A2F005534B4 /* NSData+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AACA7425938A2F005534B4 /* NSData+Hex.m */; };
+		28AACA7C25938A2F005534B4 /* UIColor+Random.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AACA7825938A2F005534B4 /* UIColor+Random.m */; };
+		28AACA8325938AB0005534B4 /* QPHTTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AACA8125938AB0005534B4 /* QPHTTPManager.m */; };
+		28AACA8D25938AD3005534B4 /* QPBaseNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AACA8925938AD3005534B4 /* QPBaseNavController.m */; };
+		28AACA8E25938AD3005534B4 /* QPBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AACA8B25938AD3005534B4 /* QPBaseViewController.m */; };
+		28AACA8F25938AD3005534B4 /* QPBaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AACA8C25938AD3005534B4 /* QPBaseTabBarController.m */; };
+		28AACA9825938AEA005534B4 /* QPBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AACA9325938AEA005534B4 /* QPBaseModel.m */; };
+		28AACA9925938AEA005534B4 /* QPBaseTabBar.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28AACA9525938AEA005534B4 /* QPBaseTabBar.plist */; };
+		28AACA9A25938AEA005534B4 /* QPBaseTabBarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AACA9625938AEA005534B4 /* QPBaseTabBarModel.m */; };
+		28AACAA025938B14005534B4 /* QPProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AACA9F25938B14005534B4 /* QPProfileViewController.m */; };
+		28AACAA625938B1E005534B4 /* QPHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AACAA525938B1E005534B4 /* QPHomeViewController.m */; };
+		28AACAB025938CC5005534B4 /* QPFundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AACAAE25938CC4005534B4 /* QPFundViewController.m */; };
+		28AACAB825938CD3005534B4 /* QPFundModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AACAB425938CD3005534B4 /* QPFundModel.m */; };
+		28AACAB925938CD3005534B4 /* QPFundCellFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AACAB525938CD3005534B4 /* QPFundCellFrame.m */; };
+		28AACABF25938CDA005534B4 /* QPFundCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AACABE25938CDA005534B4 /* QPFundCell.m */; };
+		4C58756A8195B4F88A64936B /* Pods_QPFundCalculatorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 958CEA2A92185D325CC40FF1 /* Pods_QPFundCalculatorTests.framework */; };
+		542A4DC676A9F19C31B7EEA5 /* Pods_QPFundCalculator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4753C2948D28244B529A7A01 /* Pods_QPFundCalculator.framework */; };
+		6A3C13938758EE4602AB781C /* Pods_QPFundCalculator_QPFundCalculatorUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A997DBEEA3BD18BDB04A46ED /* Pods_QPFundCalculator_QPFundCalculatorUITests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		28AACA0425937BE9005534B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 28AAC9DD25937BE3005534B4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 28AAC9E425937BE3005534B4;
+			remoteInfo = QPFundCalculator;
+		};
+		28AACA0F25937BE9005534B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 28AAC9DD25937BE3005534B4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 28AAC9E425937BE3005534B4;
+			remoteInfo = QPFundCalculator;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0AA6D77B658DAF56828ECC9B /* Pods-QPFundCalculator-QPFundCalculatorUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QPFundCalculator-QPFundCalculatorUITests.release.xcconfig"; path = "Target Support Files/Pods-QPFundCalculator-QPFundCalculatorUITests/Pods-QPFundCalculator-QPFundCalculatorUITests.release.xcconfig"; sourceTree = "<group>"; };
+		1CE1CE7ACF5859F4E940B9E1 /* Pods-QPFundCalculatorTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QPFundCalculatorTests.debug.xcconfig"; path = "Target Support Files/Pods-QPFundCalculatorTests/Pods-QPFundCalculatorTests.debug.xcconfig"; sourceTree = "<group>"; };
+		28AAC9E525937BE3005534B4 /* QPFundCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QPFundCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		28AAC9F225937BE3005534B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		28AAC9F525937BE3005534B4 /* QPFundCalculator.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QPFundCalculator.xcdatamodel; sourceTree = "<group>"; };
+		28AAC9F725937BE8005534B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		28AAC9FA25937BE8005534B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		28AAC9FC25937BE8005534B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		28AACA0325937BE9005534B4 /* QPFundCalculatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QPFundCalculatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		28AACA0725937BE9005534B4 /* QPFundCalculatorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QPFundCalculatorTests.m; sourceTree = "<group>"; };
+		28AACA0925937BE9005534B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		28AACA0E25937BE9005534B4 /* QPFundCalculatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QPFundCalculatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		28AACA1225937BE9005534B4 /* QPFundCalculatorUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QPFundCalculatorUITests.m; sourceTree = "<group>"; };
+		28AACA1425937BE9005534B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		28AACA3025937CE9005534B4 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		28AACA3225937CE9005534B4 /* SceneDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		28AACA3325937CE9005534B4 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		28AACA3425937CE9005534B4 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		28AACA3625937CE9005534B4 /* SceneDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		28AACA5225938662005534B4 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		28AACA53259386D4005534B4 /* Macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
+		28AACA7125938A2E005534B4 /* NSData+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Hex.h"; sourceTree = "<group>"; };
+		28AACA7225938A2E005534B4 /* QPCacheHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QPCacheHelper.m; sourceTree = "<group>"; };
+		28AACA7325938A2F005534B4 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
+		28AACA7425938A2F005534B4 /* NSData+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Hex.m"; sourceTree = "<group>"; };
+		28AACA7525938A2F005534B4 /* QPCacheHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QPCacheHelper.h; sourceTree = "<group>"; };
+		28AACA7625938A2F005534B4 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
+		28AACA7725938A2F005534B4 /* UIColor+Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Random.h"; sourceTree = "<group>"; };
+		28AACA7825938A2F005534B4 /* UIColor+Random.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Random.m"; sourceTree = "<group>"; };
+		28AACA8025938AB0005534B4 /* QPHTTPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QPHTTPManager.h; sourceTree = "<group>"; };
+		28AACA8125938AB0005534B4 /* QPHTTPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QPHTTPManager.m; sourceTree = "<group>"; };
+		28AACA8225938AB0005534B4 /* QPAPIConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QPAPIConfig.h; sourceTree = "<group>"; };
+		28AACA8725938AD2005534B4 /* QPBaseTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QPBaseTabBarController.h; sourceTree = "<group>"; };
+		28AACA8825938AD2005534B4 /* QPBaseNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QPBaseNavController.h; sourceTree = "<group>"; };
+		28AACA8925938AD3005534B4 /* QPBaseNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QPBaseNavController.m; sourceTree = "<group>"; };
+		28AACA8A25938AD3005534B4 /* QPBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QPBaseViewController.h; sourceTree = "<group>"; };
+		28AACA8B25938AD3005534B4 /* QPBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QPBaseViewController.m; sourceTree = "<group>"; };
+		28AACA8C25938AD3005534B4 /* QPBaseTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QPBaseTabBarController.m; sourceTree = "<group>"; };
+		28AACA9325938AEA005534B4 /* QPBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QPBaseModel.m; sourceTree = "<group>"; };
+		28AACA9425938AEA005534B4 /* QPBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QPBaseModel.h; sourceTree = "<group>"; };
+		28AACA9525938AEA005534B4 /* QPBaseTabBar.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = QPBaseTabBar.plist; sourceTree = "<group>"; };
+		28AACA9625938AEA005534B4 /* QPBaseTabBarModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QPBaseTabBarModel.m; sourceTree = "<group>"; };
+		28AACA9725938AEA005534B4 /* QPBaseTabBarModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QPBaseTabBarModel.h; sourceTree = "<group>"; };
+		28AACA9E25938B14005534B4 /* QPProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QPProfileViewController.h; sourceTree = "<group>"; };
+		28AACA9F25938B14005534B4 /* QPProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QPProfileViewController.m; sourceTree = "<group>"; };
+		28AACAA425938B1E005534B4 /* QPHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QPHomeViewController.h; sourceTree = "<group>"; };
+		28AACAA525938B1E005534B4 /* QPHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QPHomeViewController.m; sourceTree = "<group>"; };
+		28AACAAE25938CC4005534B4 /* QPFundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QPFundViewController.m; sourceTree = "<group>"; };
+		28AACAAF25938CC4005534B4 /* QPFundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QPFundViewController.h; sourceTree = "<group>"; };
+		28AACAB425938CD3005534B4 /* QPFundModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QPFundModel.m; sourceTree = "<group>"; };
+		28AACAB525938CD3005534B4 /* QPFundCellFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QPFundCellFrame.m; sourceTree = "<group>"; };
+		28AACAB625938CD3005534B4 /* QPFundCellFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QPFundCellFrame.h; sourceTree = "<group>"; };
+		28AACAB725938CD3005534B4 /* QPFundModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QPFundModel.h; sourceTree = "<group>"; };
+		28AACABD25938CDA005534B4 /* QPFundCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QPFundCell.h; sourceTree = "<group>"; };
+		28AACABE25938CDA005534B4 /* QPFundCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QPFundCell.m; sourceTree = "<group>"; };
+		4753C2948D28244B529A7A01 /* Pods_QPFundCalculator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QPFundCalculator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		74D05776BBD9F92FB6105FBF /* Pods-QPFundCalculatorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QPFundCalculatorTests.release.xcconfig"; path = "Target Support Files/Pods-QPFundCalculatorTests/Pods-QPFundCalculatorTests.release.xcconfig"; sourceTree = "<group>"; };
+		83940A68249DD2DE58CC38E0 /* Pods-QPFundCalculator-QPFundCalculatorUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QPFundCalculator-QPFundCalculatorUITests.debug.xcconfig"; path = "Target Support Files/Pods-QPFundCalculator-QPFundCalculatorUITests/Pods-QPFundCalculator-QPFundCalculatorUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		958CEA2A92185D325CC40FF1 /* Pods_QPFundCalculatorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QPFundCalculatorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A997DBEEA3BD18BDB04A46ED /* Pods_QPFundCalculator_QPFundCalculatorUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QPFundCalculator_QPFundCalculatorUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B81807049BE2D9477B51498C /* Pods-QPFundCalculator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QPFundCalculator.release.xcconfig"; path = "Target Support Files/Pods-QPFundCalculator/Pods-QPFundCalculator.release.xcconfig"; sourceTree = "<group>"; };
+		DD2A3C783326829BE8D0870A /* Pods-QPFundCalculator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QPFundCalculator.debug.xcconfig"; path = "Target Support Files/Pods-QPFundCalculator/Pods-QPFundCalculator.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		28AAC9E225937BE3005534B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				542A4DC676A9F19C31B7EEA5 /* Pods_QPFundCalculator.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		28AACA0025937BE9005534B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C58756A8195B4F88A64936B /* Pods_QPFundCalculatorTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		28AACA0B25937BE9005534B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A3C13938758EE4602AB781C /* Pods_QPFundCalculator_QPFundCalculatorUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		28AAC9DC25937BE3005534B4 = {
+			isa = PBXGroup;
+			children = (
+				28AAC9E725937BE3005534B4 /* QPFundCalculator */,
+				28AACA0625937BE9005534B4 /* QPFundCalculatorTests */,
+				28AACA1125937BE9005534B4 /* QPFundCalculatorUITests */,
+				28AAC9E625937BE3005534B4 /* Products */,
+				FA5473F0133FEE94F9DC6494 /* Pods */,
+				E9F042EABCB07D4B9B78FB94 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		28AAC9E625937BE3005534B4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				28AAC9E525937BE3005534B4 /* QPFundCalculator.app */,
+				28AACA0325937BE9005534B4 /* QPFundCalculatorTests.xctest */,
+				28AACA0E25937BE9005534B4 /* QPFundCalculatorUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		28AAC9E725937BE3005534B4 /* QPFundCalculator */ = {
+			isa = PBXGroup;
+			children = (
+				28AACA2925937CE9005534B4 /* Classes */,
+				28AAC9F725937BE8005534B4 /* Assets.xcassets */,
+				28AAC9F925937BE8005534B4 /* LaunchScreen.storyboard */,
+				28AAC9F125937BE3005534B4 /* Main.storyboard */,
+				28AAC9F425937BE3005534B4 /* QPFundCalculator.xcdatamodeld */,
+				28AAC9FC25937BE8005534B4 /* Info.plist */,
+			);
+			path = QPFundCalculator;
+			sourceTree = "<group>";
+		};
+		28AACA0625937BE9005534B4 /* QPFundCalculatorTests */ = {
+			isa = PBXGroup;
+			children = (
+				28AACA0725937BE9005534B4 /* QPFundCalculatorTests.m */,
+				28AACA0925937BE9005534B4 /* Info.plist */,
+			);
+			path = QPFundCalculatorTests;
+			sourceTree = "<group>";
+		};
+		28AACA1125937BE9005534B4 /* QPFundCalculatorUITests */ = {
+			isa = PBXGroup;
+			children = (
+				28AACA1225937BE9005534B4 /* QPFundCalculatorUITests.m */,
+				28AACA1425937BE9005534B4 /* Info.plist */,
+			);
+			path = QPFundCalculatorUITests;
+			sourceTree = "<group>";
+		};
+		28AACA2925937CE9005534B4 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				28AACA3C25937CE9005534B4 /* Base */,
+				28AACAAA25938C8B005534B4 /* Fund */,
+				28AACA2A25937CE9005534B4 /* Home */,
+				28AACA3725937CE9005534B4 /* Profile */,
+				28AACA2E25937CE9005534B4 /* Network */,
+				28AACA3B25937CE9005534B4 /* Lib */,
+				28AACA4025937CE9005534B4 /* Tool */,
+				28AACA2F25937CE9005534B4 /* Other */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		28AACA2A25937CE9005534B4 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				28AACA2B25937CE9005534B4 /* Controller */,
+				28AACA2C25937CE9005534B4 /* Model */,
+				28AACA2D25937CE9005534B4 /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		28AACA2B25937CE9005534B4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				28AACAA425938B1E005534B4 /* QPHomeViewController.h */,
+				28AACAA525938B1E005534B4 /* QPHomeViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		28AACA2C25937CE9005534B4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		28AACA2D25937CE9005534B4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		28AACA2E25937CE9005534B4 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				28AACA8225938AB0005534B4 /* QPAPIConfig.h */,
+				28AACA8025938AB0005534B4 /* QPHTTPManager.h */,
+				28AACA8125938AB0005534B4 /* QPHTTPManager.m */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		28AACA2F25937CE9005534B4 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				28AACA3325937CE9005534B4 /* main.m */,
+				28AACA3025937CE9005534B4 /* AppDelegate.h */,
+				28AACA3425937CE9005534B4 /* AppDelegate.m */,
+				28AACA3625937CE9005534B4 /* SceneDelegate.h */,
+				28AACA3225937CE9005534B4 /* SceneDelegate.m */,
+				28AACA5225938662005534B4 /* PrefixHeader.pch */,
+				28AACA53259386D4005534B4 /* Macro.h */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		28AACA3725937CE9005534B4 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				28AACA3825937CE9005534B4 /* Controller */,
+				28AACA3925937CE9005534B4 /* Model */,
+				28AACA3A25937CE9005534B4 /* View */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		28AACA3825937CE9005534B4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				28AACA9E25938B14005534B4 /* QPProfileViewController.h */,
+				28AACA9F25938B14005534B4 /* QPProfileViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		28AACA3925937CE9005534B4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		28AACA3A25937CE9005534B4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		28AACA3B25937CE9005534B4 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		28AACA3C25937CE9005534B4 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				28AACA3D25937CE9005534B4 /* Controller */,
+				28AACA3E25937CE9005534B4 /* Model */,
+				28AACA3F25937CE9005534B4 /* View */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		28AACA3D25937CE9005534B4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				28AACA8A25938AD3005534B4 /* QPBaseViewController.h */,
+				28AACA8B25938AD3005534B4 /* QPBaseViewController.m */,
+				28AACA8825938AD2005534B4 /* QPBaseNavController.h */,
+				28AACA8925938AD3005534B4 /* QPBaseNavController.m */,
+				28AACA8725938AD2005534B4 /* QPBaseTabBarController.h */,
+				28AACA8C25938AD3005534B4 /* QPBaseTabBarController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		28AACA3E25937CE9005534B4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				28AACA9425938AEA005534B4 /* QPBaseModel.h */,
+				28AACA9325938AEA005534B4 /* QPBaseModel.m */,
+				28AACA9725938AEA005534B4 /* QPBaseTabBarModel.h */,
+				28AACA9625938AEA005534B4 /* QPBaseTabBarModel.m */,
+				28AACA9525938AEA005534B4 /* QPBaseTabBar.plist */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		28AACA3F25937CE9005534B4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		28AACA4025937CE9005534B4 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				28AACA7625938A2F005534B4 /* UIView+Frame.h */,
+				28AACA7325938A2F005534B4 /* UIView+Frame.m */,
+				28AACA7725938A2F005534B4 /* UIColor+Random.h */,
+				28AACA7825938A2F005534B4 /* UIColor+Random.m */,
+				28AACA7125938A2E005534B4 /* NSData+Hex.h */,
+				28AACA7425938A2F005534B4 /* NSData+Hex.m */,
+				28AACA7525938A2F005534B4 /* QPCacheHelper.h */,
+				28AACA7225938A2E005534B4 /* QPCacheHelper.m */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		28AACAAA25938C8B005534B4 /* Fund */ = {
+			isa = PBXGroup;
+			children = (
+				28AACAAB25938C8B005534B4 /* Controller */,
+				28AACAAC25938C8B005534B4 /* Model */,
+				28AACAAD25938C8B005534B4 /* View */,
+			);
+			path = Fund;
+			sourceTree = "<group>";
+		};
+		28AACAAB25938C8B005534B4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				28AACAAF25938CC4005534B4 /* QPFundViewController.h */,
+				28AACAAE25938CC4005534B4 /* QPFundViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		28AACAAC25938C8B005534B4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				28AACAB725938CD3005534B4 /* QPFundModel.h */,
+				28AACAB425938CD3005534B4 /* QPFundModel.m */,
+				28AACAB625938CD3005534B4 /* QPFundCellFrame.h */,
+				28AACAB525938CD3005534B4 /* QPFundCellFrame.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		28AACAAD25938C8B005534B4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				28AACABD25938CDA005534B4 /* QPFundCell.h */,
+				28AACABE25938CDA005534B4 /* QPFundCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E9F042EABCB07D4B9B78FB94 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4753C2948D28244B529A7A01 /* Pods_QPFundCalculator.framework */,
+				A997DBEEA3BD18BDB04A46ED /* Pods_QPFundCalculator_QPFundCalculatorUITests.framework */,
+				958CEA2A92185D325CC40FF1 /* Pods_QPFundCalculatorTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FA5473F0133FEE94F9DC6494 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DD2A3C783326829BE8D0870A /* Pods-QPFundCalculator.debug.xcconfig */,
+				B81807049BE2D9477B51498C /* Pods-QPFundCalculator.release.xcconfig */,
+				83940A68249DD2DE58CC38E0 /* Pods-QPFundCalculator-QPFundCalculatorUITests.debug.xcconfig */,
+				0AA6D77B658DAF56828ECC9B /* Pods-QPFundCalculator-QPFundCalculatorUITests.release.xcconfig */,
+				1CE1CE7ACF5859F4E940B9E1 /* Pods-QPFundCalculatorTests.debug.xcconfig */,
+				74D05776BBD9F92FB6105FBF /* Pods-QPFundCalculatorTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		28AAC9E425937BE3005534B4 /* QPFundCalculator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 28AACA1725937BE9005534B4 /* Build configuration list for PBXNativeTarget "QPFundCalculator" */;
+			buildPhases = (
+				CA60AE64A7FCFF08790696E4 /* [CP] Check Pods Manifest.lock */,
+				28AAC9E125937BE3005534B4 /* Sources */,
+				28AAC9E225937BE3005534B4 /* Frameworks */,
+				28AAC9E325937BE3005534B4 /* Resources */,
+				A19B82FBB9B973DB07010239 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QPFundCalculator;
+			productName = QPFundCalculator;
+			productReference = 28AAC9E525937BE3005534B4 /* QPFundCalculator.app */;
+			productType = "com.apple.product-type.application";
+		};
+		28AACA0225937BE9005534B4 /* QPFundCalculatorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 28AACA1A25937BE9005534B4 /* Build configuration list for PBXNativeTarget "QPFundCalculatorTests" */;
+			buildPhases = (
+				D845DCFB452B2AA2AA3A37A0 /* [CP] Check Pods Manifest.lock */,
+				28AAC9FF25937BE9005534B4 /* Sources */,
+				28AACA0025937BE9005534B4 /* Frameworks */,
+				28AACA0125937BE9005534B4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				28AACA0525937BE9005534B4 /* PBXTargetDependency */,
+			);
+			name = QPFundCalculatorTests;
+			productName = QPFundCalculatorTests;
+			productReference = 28AACA0325937BE9005534B4 /* QPFundCalculatorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		28AACA0D25937BE9005534B4 /* QPFundCalculatorUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 28AACA1D25937BE9005534B4 /* Build configuration list for PBXNativeTarget "QPFundCalculatorUITests" */;
+			buildPhases = (
+				2ED4DFB4FD57E07A4774375F /* [CP] Check Pods Manifest.lock */,
+				28AACA0A25937BE9005534B4 /* Sources */,
+				28AACA0B25937BE9005534B4 /* Frameworks */,
+				28AACA0C25937BE9005534B4 /* Resources */,
+				5ADE82251AA93F590390E816 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				28AACA1025937BE9005534B4 /* PBXTargetDependency */,
+			);
+			name = QPFundCalculatorUITests;
+			productName = QPFundCalculatorUITests;
+			productReference = 28AACA0E25937BE9005534B4 /* QPFundCalculatorUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		28AAC9DD25937BE3005534B4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = QP;
+				LastUpgradeCheck = 1220;
+				TargetAttributes = {
+					28AAC9E425937BE3005534B4 = {
+						CreatedOnToolsVersion = 12.2;
+					};
+					28AACA0225937BE9005534B4 = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = 28AAC9E425937BE3005534B4;
+					};
+					28AACA0D25937BE9005534B4 = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = 28AAC9E425937BE3005534B4;
+					};
+				};
+			};
+			buildConfigurationList = 28AAC9E025937BE3005534B4 /* Build configuration list for PBXProject "QPFundCalculator" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 28AAC9DC25937BE3005534B4;
+			productRefGroup = 28AAC9E625937BE3005534B4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				28AAC9E425937BE3005534B4 /* QPFundCalculator */,
+				28AACA0225937BE9005534B4 /* QPFundCalculatorTests */,
+				28AACA0D25937BE9005534B4 /* QPFundCalculatorUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		28AAC9E325937BE3005534B4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28AACA9925938AEA005534B4 /* QPBaseTabBar.plist in Resources */,
+				28AAC9FB25937BE8005534B4 /* LaunchScreen.storyboard in Resources */,
+				28AAC9F825937BE8005534B4 /* Assets.xcassets in Resources */,
+				28AAC9F325937BE3005534B4 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		28AACA0125937BE9005534B4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		28AACA0C25937BE9005534B4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2ED4DFB4FD57E07A4774375F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-QPFundCalculator-QPFundCalculatorUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5ADE82251AA93F590390E816 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-QPFundCalculator-QPFundCalculatorUITests/Pods-QPFundCalculator-QPFundCalculatorUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-QPFundCalculator-QPFundCalculatorUITests/Pods-QPFundCalculator-QPFundCalculatorUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QPFundCalculator-QPFundCalculatorUITests/Pods-QPFundCalculator-QPFundCalculatorUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A19B82FBB9B973DB07010239 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-QPFundCalculator/Pods-QPFundCalculator-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-QPFundCalculator/Pods-QPFundCalculator-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QPFundCalculator/Pods-QPFundCalculator-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CA60AE64A7FCFF08790696E4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-QPFundCalculator-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D845DCFB452B2AA2AA3A37A0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-QPFundCalculatorTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		28AAC9E125937BE3005534B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28AACA7A25938A2F005534B4 /* UIView+Frame.m in Sources */,
+				28AACA9825938AEA005534B4 /* QPBaseModel.m in Sources */,
+				28AACA8D25938AD3005534B4 /* QPBaseNavController.m in Sources */,
+				28AACA7B25938A2F005534B4 /* NSData+Hex.m in Sources */,
+				28AACA8E25938AD3005534B4 /* QPBaseViewController.m in Sources */,
+				28AACA7925938A2F005534B4 /* QPCacheHelper.m in Sources */,
+				28AACAB025938CC5005534B4 /* QPFundViewController.m in Sources */,
+				28AACA4225937CE9005534B4 /* SceneDelegate.m in Sources */,
+				28AACA7C25938A2F005534B4 /* UIColor+Random.m in Sources */,
+				28AACA4325937CE9005534B4 /* main.m in Sources */,
+				28AACA9A25938AEA005534B4 /* QPBaseTabBarModel.m in Sources */,
+				28AACAA625938B1E005534B4 /* QPHomeViewController.m in Sources */,
+				28AAC9F625937BE3005534B4 /* QPFundCalculator.xcdatamodeld in Sources */,
+				28AACAB825938CD3005534B4 /* QPFundModel.m in Sources */,
+				28AACAB925938CD3005534B4 /* QPFundCellFrame.m in Sources */,
+				28AACAA025938B14005534B4 /* QPProfileViewController.m in Sources */,
+				28AACA8325938AB0005534B4 /* QPHTTPManager.m in Sources */,
+				28AACABF25938CDA005534B4 /* QPFundCell.m in Sources */,
+				28AACA4425937CE9005534B4 /* AppDelegate.m in Sources */,
+				28AACA8F25938AD3005534B4 /* QPBaseTabBarController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		28AAC9FF25937BE9005534B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28AACA0825937BE9005534B4 /* QPFundCalculatorTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		28AACA0A25937BE9005534B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28AACA1325937BE9005534B4 /* QPFundCalculatorUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		28AACA0525937BE9005534B4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 28AAC9E425937BE3005534B4 /* QPFundCalculator */;
+			targetProxy = 28AACA0425937BE9005534B4 /* PBXContainerItemProxy */;
+		};
+		28AACA1025937BE9005534B4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 28AAC9E425937BE3005534B4 /* QPFundCalculator */;
+			targetProxy = 28AACA0F25937BE9005534B4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		28AAC9F125937BE3005534B4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				28AAC9F225937BE3005534B4 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		28AAC9F925937BE8005534B4 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				28AAC9FA25937BE8005534B4 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		28AACA1525937BE9005534B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		28AACA1625937BE9005534B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		28AACA1825937BE9005534B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DD2A3C783326829BE8D0870A /* Pods-QPFundCalculator.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8E5A83P9AJ;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/QPFundCalculator/Classes/Other/PrefixHeader.pch";
+				INFOPLIST_FILE = QPFundCalculator/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = jackiequ.github.io.QPFundCalculator;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		28AACA1925937BE9005534B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B81807049BE2D9477B51498C /* Pods-QPFundCalculator.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8E5A83P9AJ;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/QPFundCalculator/Classes/Other/PrefixHeader.pch";
+				INFOPLIST_FILE = QPFundCalculator/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = jackiequ.github.io.QPFundCalculator;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		28AACA1B25937BE9005534B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1CE1CE7ACF5859F4E940B9E1 /* Pods-QPFundCalculatorTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8E5A83P9AJ;
+				INFOPLIST_FILE = QPFundCalculatorTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = jackiequ.github.io.QPFundCalculatorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QPFundCalculator.app/QPFundCalculator";
+			};
+			name = Debug;
+		};
+		28AACA1C25937BE9005534B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 74D05776BBD9F92FB6105FBF /* Pods-QPFundCalculatorTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8E5A83P9AJ;
+				INFOPLIST_FILE = QPFundCalculatorTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = jackiequ.github.io.QPFundCalculatorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QPFundCalculator.app/QPFundCalculator";
+			};
+			name = Release;
+		};
+		28AACA1E25937BE9005534B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 83940A68249DD2DE58CC38E0 /* Pods-QPFundCalculator-QPFundCalculatorUITests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8E5A83P9AJ;
+				INFOPLIST_FILE = QPFundCalculatorUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = jackiequ.github.io.QPFundCalculatorUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = QPFundCalculator;
+			};
+			name = Debug;
+		};
+		28AACA1F25937BE9005534B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0AA6D77B658DAF56828ECC9B /* Pods-QPFundCalculator-QPFundCalculatorUITests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8E5A83P9AJ;
+				INFOPLIST_FILE = QPFundCalculatorUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = jackiequ.github.io.QPFundCalculatorUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = QPFundCalculator;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		28AAC9E025937BE3005534B4 /* Build configuration list for PBXProject "QPFundCalculator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				28AACA1525937BE9005534B4 /* Debug */,
+				28AACA1625937BE9005534B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		28AACA1725937BE9005534B4 /* Build configuration list for PBXNativeTarget "QPFundCalculator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				28AACA1825937BE9005534B4 /* Debug */,
+				28AACA1925937BE9005534B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		28AACA1A25937BE9005534B4 /* Build configuration list for PBXNativeTarget "QPFundCalculatorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				28AACA1B25937BE9005534B4 /* Debug */,
+				28AACA1C25937BE9005534B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		28AACA1D25937BE9005534B4 /* Build configuration list for PBXNativeTarget "QPFundCalculatorUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				28AACA1E25937BE9005534B4 /* Debug */,
+				28AACA1F25937BE9005534B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		28AAC9F425937BE3005534B4 /* QPFundCalculator.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				28AAC9F525937BE3005534B4 /* QPFundCalculator.xcdatamodel */,
+			);
+			currentVersion = 28AAC9F525937BE3005534B4 /* QPFundCalculator.xcdatamodel */;
+			path = QPFundCalculator.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 28AAC9DD25937BE3005534B4 /* Project object */;
+}

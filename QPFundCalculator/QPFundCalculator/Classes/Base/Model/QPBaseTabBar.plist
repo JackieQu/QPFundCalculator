@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>defaultIndex</key>
+	<integer>0</integer>
+	<key>vcList</key>
+	<array>
+		<dict>
+			<key>show</key>
+			<true/>
+			<key>vcName</key>
+			<string>QPHomeViewController</string>
+			<key>vcTitle</key>
+			<string>主页</string>
+		</dict>
+		<dict>
+			<key>show</key>
+			<true/>
+			<key>vcName</key>
+			<string>QPProfileViewController</string>
+			<key>vcTitle</key>
+			<string>我的</string>
+		</dict>
+	</array>
+</dict>
+</plist>

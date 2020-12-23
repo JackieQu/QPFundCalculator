@@ -1,0 +1,30 @@
+# source 'https://github.com/CocoaPods/Specs.git'
+source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
+
+# Uncomment the next line to define a global platform for your project
+platform :ios, '9.0'
+
+target 'QPFundCalculator' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for QPFundCalculator
+  pod 'AFNetworking'
+  pod 'SDWebImage'
+  pod 'MBProgressHUD'
+  pod 'SVProgressHUD'
+  pod 'Masonry'
+  pod 'MJRefresh'
+  pod 'MJExtension'
+  pod 'FMDB'
+
+  target 'QPFundCalculatorTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'QPFundCalculatorUITests' do
+    # Pods for testing
+  end
+
+end
