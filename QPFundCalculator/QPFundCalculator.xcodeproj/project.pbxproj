@@ -33,6 +33,7 @@
 		28AACAB825938CD3005534B4 /* QPFundModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AACAB425938CD3005534B4 /* QPFundModel.m */; };
 		28AACAB925938CD3005534B4 /* QPFundCellFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AACAB525938CD3005534B4 /* QPFundCellFrame.m */; };
 		28AACABF25938CDA005534B4 /* QPFundCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AACABE25938CDA005534B4 /* QPFundCell.m */; };
+		28E56BA3259488D60000CF08 /* QPFundCompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E56BA2259488D60000CF08 /* QPFundCompanyModel.m */; };
 		4C58756A8195B4F88A64936B /* Pods_QPFundCalculatorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 958CEA2A92185D325CC40FF1 /* Pods_QPFundCalculatorTests.framework */; };
 		542A4DC676A9F19C31B7EEA5 /* Pods_QPFundCalculator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4753C2948D28244B529A7A01 /* Pods_QPFundCalculator.framework */; };
 		6A3C13938758EE4602AB781C /* Pods_QPFundCalculator_QPFundCalculatorUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A997DBEEA3BD18BDB04A46ED /* Pods_QPFundCalculator_QPFundCalculatorUITests.framework */; };
@@ -111,6 +112,8 @@
 		28AACAB725938CD3005534B4 /* QPFundModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QPFundModel.h; sourceTree = "<group>"; };
 		28AACABD25938CDA005534B4 /* QPFundCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QPFundCell.h; sourceTree = "<group>"; };
 		28AACABE25938CDA005534B4 /* QPFundCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QPFundCell.m; sourceTree = "<group>"; };
+		28E56BA1259488D60000CF08 /* QPFundCompanyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QPFundCompanyModel.h; sourceTree = "<group>"; };
+		28E56BA2259488D60000CF08 /* QPFundCompanyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QPFundCompanyModel.m; sourceTree = "<group>"; };
 		4753C2948D28244B529A7A01 /* Pods_QPFundCalculator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QPFundCalculator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74D05776BBD9F92FB6105FBF /* Pods-QPFundCalculatorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QPFundCalculatorTests.release.xcconfig"; path = "Target Support Files/Pods-QPFundCalculatorTests/Pods-QPFundCalculatorTests.release.xcconfig"; sourceTree = "<group>"; };
 		83940A68249DD2DE58CC38E0 /* Pods-QPFundCalculator-QPFundCalculatorUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QPFundCalculator-QPFundCalculatorUITests.debug.xcconfig"; path = "Target Support Files/Pods-QPFundCalculator-QPFundCalculatorUITests/Pods-QPFundCalculator-QPFundCalculatorUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -396,6 +399,8 @@
 				28AACAB425938CD3005534B4 /* QPFundModel.m */,
 				28AACAB625938CD3005534B4 /* QPFundCellFrame.h */,
 				28AACAB525938CD3005534B4 /* QPFundCellFrame.m */,
+				28E56BA1259488D60000CF08 /* QPFundCompanyModel.h */,
+				28E56BA2259488D60000CF08 /* QPFundCompanyModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -676,6 +681,7 @@
 				28AACA8D25938AD3005534B4 /* QPBaseNavController.m in Sources */,
 				28AACA7B25938A2F005534B4 /* NSData+Hex.m in Sources */,
 				28AACA8E25938AD3005534B4 /* QPBaseViewController.m in Sources */,
+				28E56BA3259488D60000CF08 /* QPFundCompanyModel.m in Sources */,
 				28AACA7925938A2F005534B4 /* QPCacheHelper.m in Sources */,
 				28AACAB025938CC5005534B4 /* QPFundViewController.m in Sources */,
 				28AACA4225937CE9005534B4 /* SceneDelegate.m in Sources */,
@@ -796,7 +802,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -849,7 +855,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -868,6 +874,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/QPFundCalculator/Classes/Other/PrefixHeader.pch";
 				INFOPLIST_FILE = QPFundCalculator/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -889,6 +896,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/QPFundCalculator/Classes/Other/PrefixHeader.pch";
 				INFOPLIST_FILE = QPFundCalculator/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -907,7 +915,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8E5A83P9AJ;
 				INFOPLIST_FILE = QPFundCalculatorTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -928,7 +936,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8E5A83P9AJ;
 				INFOPLIST_FILE = QPFundCalculatorTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -948,6 +956,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8E5A83P9AJ;
 				INFOPLIST_FILE = QPFundCalculatorUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -967,6 +976,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8E5A83P9AJ;
 				INFOPLIST_FILE = QPFundCalculatorUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

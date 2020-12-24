@@ -13,11 +13,25 @@
 
 @property (nonatomic, strong) AFHTTPSessionManager *manager;
 
-@property (nonatomic, assign) BOOL isReachable;
-
 @end
 
 @implementation QPHTTPManager
+
+- (void)setResponseType:(ResponseSerializerType)responseType {
+    _responseType = responseType;
+    
+    switch (responseType) {
+        case HTTP:
+            self.manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+            break;
+        case JSON:
+            self.manager.responseSerializer = [AFJSONResponseSerializer serializer];
+            break;
+        default:
+            break;
+    }
+    self.manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"application/javascript", @"application/x-javascript",  @"text/json", @"text/javascript", @"text/html", @"text/plain", @"image/gif", @"image/jpg", @"image/png", nil];
+}
 
 - (instancetype)init
 {
@@ -29,11 +43,9 @@
         
         self.manager.requestSerializer = [AFHTTPRequestSerializer serializer];
         self.manager.requestSerializer.timeoutInterval = 30.f;
-        [self.manager.requestSerializer setValue:@"application/javascript; application/x-www-form-urlencoded; application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+        [self.manager.requestSerializer setValue:@"application/x-www-form-urlencoded; application/json; application/javascript; application/x-javascript; charset=utf-8;" forHTTPHeaderField:@"Content-Type"];
         
-//        self.manager.responseSerializer = [AFJSONResponseSerializer serializer];
-        self.manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-        self.manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", @"text/plain", @"image/gif", @"image/jpg", @"image/png", nil];
+        self.responseType = JSON;
         
         self.manager.securityPolicy = [AFSecurityPolicy defaultPolicy];
         self.manager.securityPolicy.allowInvalidCertificates = YES;
@@ -83,6 +95,8 @@
 - (void)requestWithMethod:(HTTPRequestMethod)method path:(NSString *)path params:(NSDictionary *)params prepare:(PrepareBlock)prepare success:(SuccessBlock)success failure:(FailureBlock)failure {
     
     if (self.isReachable) {
+        
+        self.responseType = JSON;
         
         if (prepare) {
             prepare();

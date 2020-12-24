@@ -11,6 +11,8 @@
 #import "QPFundModel.h"
 #import "QPFundCellFrame.h"
 
+#import "QPFundCompanyModel.h"
+
 static NSString *identifier = @"cellID";
 
 @interface QPFundViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -87,6 +89,8 @@ static NSString *identifier = @"cellID";
     }
 
     [self.fundTableView reloadData];
+    
+    [self getFundInfo];
 }
 
 - (void)addAction {
@@ -108,6 +112,35 @@ static NSString *identifier = @"cellID";
     UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"预计收益" message:msg preferredStyle:UIAlertControllerStyleAlert];
     [alertVC addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil]];
     [self presentViewController:alertVC animated:YES completion:nil];
+}
+
+- (void)getFundInfo {
+    
+    NSString *path = API_FUND_JZGS;
+//    NSString *path = API_FUND_DETAIL(@"008888");
+//    NSString *path = API_FUND_VALUATION_LIST;
+    
+    [[QPHTTPManager sharedManager] requestWithMethod:GET path:path params:nil prepare:^{
+        DLog(@"请求基金信息");
+        [QPHTTPManager sharedManager].responseType = HTTP;
+    } success:^(NSURLSessionTask * _Nonnull task, id  _Nullable responseObject) {
+        NSString *str = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSString *tmp = @"var gs={op:";
+        if (!isNullStr(str) && str.length >= tmp.length) {
+            str = [@"{\"op\":" stringByAppendingString:[str substringFromIndex:tmp.length]];
+            NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+            NSError *err;
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&err];
+            if (!err) {
+                QPFundCompanyModel *company = [QPFundCompanyModel modelWithDict:dict];
+                DLog(@"%@", company);
+            } else {
+                DLog(@"%@", err);
+            }
+        }
+    } failure:^(NSURLSessionTask * _Nullable task, NSError * _Nonnull error) {
+        DLog(@"%@", error);
+    }];
 }
 
 #pragma mark - UITableViewDataSource & UITableViewDelegate

@@ -41,22 +41,9 @@
     
 //    [self getServerAddress];
 //    [self getPublicKey];
-    
-//    [self getFundInfo];
-    
+
     QPFundViewController *fundVC = [[QPFundViewController alloc] init];
     [self pushVC:fundVC];
-}
-
-- (void)getFundInfo {
-    
-    [[QPHTTPManager sharedManager] requestWithMethod:GET path:@"http://fund.eastmoney.com/js/jjjz_gs.js" params:nil prepare:^{
-        DLog(@"请求基金信息");
-    } success:^(NSURLSessionTask * _Nonnull task, id  _Nullable responseObject) {
-        DLog(@"%@", responseObject);
-    } failure:^(NSURLSessionTask * _Nullable task, NSError * _Nonnull error) {
-        DLog(@"%@", error);
-    }];
 }
 
 - (void)getServerAddress {

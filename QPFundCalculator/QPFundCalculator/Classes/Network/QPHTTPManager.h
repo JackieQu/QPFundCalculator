@@ -17,11 +17,25 @@ typedef NS_ENUM(NSInteger, HTTPRequestMethod) {
     DELETE
 };
 
+typedef NS_ENUM(NSInteger, ResponseSerializerType) {
+    HTTP,
+    JSON,
+//    XMLParser,
+//    XMLDocument,
+//    PropertyList,
+//    Image,
+//    Compound,
+};
+
 typedef void(^PrepareBlock)(void);
 typedef void(^SuccessBlock)(NSURLSessionTask * _Nonnull task, id _Nullable responseObject);
 typedef void(^FailureBlock)(NSURLSessionTask * _Nullable task, NSError *error);
 
 @interface QPHTTPManager : NSObject
+
+@property (nonatomic, assign) ResponseSerializerType responseType;
+
+@property (nonatomic, assign) BOOL isReachable;
 
 + (QPHTTPManager *)sharedManager;
 
