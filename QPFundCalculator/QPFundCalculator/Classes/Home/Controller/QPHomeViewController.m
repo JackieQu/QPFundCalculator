@@ -46,6 +46,7 @@
     [self pushVC:fundVC];
 }
 
+/*
 - (void)getServerAddress {
     
     [[QPHTTPManager sharedManager] requestWithMethod:GET path:API_GET_URL params:nil prepare:^{
@@ -68,5 +69,6 @@
         DLog(@"%@", error);
     }];
 }
-
+ */
+ 
 @end

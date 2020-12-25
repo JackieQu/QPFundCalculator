@@ -11,9 +11,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^CellDidEndEditingBlock)(QPFundModel *fund);
+
 @interface QPFundCell : UITableViewCell
 
 @property (nonatomic, strong) QPFundCellFrame * cellFrame;
+
+@property (nonatomic, copy) CellDidEndEditingBlock endEditingBlock;
 
 @end
 

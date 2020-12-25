@@ -14,8 +14,26 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *code;
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, assign) CGFloat holdValue;
-@property (nonatomic, assign) CGFloat estimatedValue;
+@property (nonatomic, assign) CGFloat holdValue;            // 持有值
+@property (nonatomic, assign) CGFloat netValue;             // 净值
+@property (nonatomic, assign) CGFloat estimatedValue;       // 估值
+@property (nonatomic, assign) CGFloat estimatedRiseValue;   // 估值
+@property (nonatomic, assign) CGFloat rise;                 // 涨幅
+@property (nonatomic, strong) NSString *estimatedTime;      // 估值时间
+@property (nonatomic, strong) NSString *referenceDate;      // 基准日期
+
+// 天天基金接口
+@property (nonatomic, assign) BOOL buy;                     // 是否可以买入？
+@property (nonatomic, strong) NSString *isBuy;              // 买入类型？
+@property (nonatomic, strong) NSString *listTexch;          // 列表推荐？
+@property (nonatomic, strong) NSString *isListTrade;        // ?
+
+// 小熊同学接口
+@property (nonatomic, assign) CGFloat lastWeekGrowth;
+@property (nonatomic, assign) CGFloat lastMonthGrowth;
+@property (nonatomic, assign) CGFloat lastThreeMonthsGrowth;
+@property (nonatomic, assign) CGFloat lastSixMonthsGrowth;
+@property (nonatomic, assign) CGFloat lastYearGrowth;
 
 @end
 

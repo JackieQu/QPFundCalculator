@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGRect nameFieldFrame;
 @property (nonatomic, assign) CGRect codeFieldFrame;
 @property (nonatomic, assign) CGRect holdValueFieldFrame;
-@property (nonatomic, assign) CGRect estimatedValueFieldFrame;
+@property (nonatomic, assign) CGRect riseFieldFrame;
 
 @property (nonatomic, assign) CGFloat cellH;
 

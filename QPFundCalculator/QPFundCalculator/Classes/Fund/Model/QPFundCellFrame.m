@@ -33,7 +33,7 @@
     CGFloat codeFieldH = 15;
     _codeFieldFrame = CGRectMake(kMargin, codeFieldY, codeFieldW, codeFieldH);
     
-    CGFloat holdValueFieldX = CGRectGetMaxY(_codeFieldFrame) + kMargin;
+    CGFloat holdValueFieldX = CGRectGetMaxX(_codeFieldFrame) + kMargin;
     CGFloat holdValueFieldY = codeFieldY;
     CGFloat holdValueFieldW = nameFieldW - codeFieldW - kMargin;
     CGFloat holdValueFieldH = codeFieldH;
@@ -41,11 +41,11 @@
     
     _cellH = CGRectGetMaxY(_codeFieldFrame) + kMargin / 2;
     
-    CGFloat estimatedValueFieldW = SCREEN_WIDTH - nameFieldW - kMargin * 3;
-    CGFloat estimatedValueFieldH = 24;
-    CGFloat estimatedValueFieldX = CGRectGetMaxX(_nameFieldFrame) + kMargin;
-    CGFloat estimatedValueFieldY = (_cellH - estimatedValueFieldH) / 2;
-    _estimatedValueFieldFrame = CGRectMake(estimatedValueFieldX, estimatedValueFieldY, estimatedValueFieldW, estimatedValueFieldH);
+    CGFloat riseFieldW = SCREEN_WIDTH - nameFieldW - kMargin * 3;
+    CGFloat riseFieldH = 24;
+    CGFloat riseFieldX = CGRectGetMaxX(_nameFieldFrame) + kMargin;
+    CGFloat riseFieldY = (_cellH - riseFieldH) / 2;
+    _riseFieldFrame = CGRectMake(riseFieldX, riseFieldY, riseFieldW, riseFieldH);
 }
 
 @end

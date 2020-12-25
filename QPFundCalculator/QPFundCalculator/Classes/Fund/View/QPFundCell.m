@@ -8,12 +8,12 @@
 
 #import "QPFundCell.h"
 
-@interface QPFundCell ()
+@interface QPFundCell () <UITextFieldDelegate>
 
 @property (nonatomic, strong) UITextField *fundNameField;
 @property (nonatomic, strong) UITextField *fundCodeField;
 @property (nonatomic, strong) UITextField *holdValueField;
-@property (nonatomic, strong) UITextField *estimatedValueField;
+@property (nonatomic, strong) UITextField *riseField;
 
 @end
 
@@ -24,6 +24,7 @@
         _fundNameField = [[UITextField alloc] initWithFrame:CGRectZero];
         _fundNameField.textAlignment = NSTextAlignmentLeft;
         _fundNameField.font = [UIFont systemFontOfSize:17];
+        _fundNameField.enabled = NO;
     }
     return _fundNameField;
 }
@@ -35,6 +36,7 @@
         _fundCodeField.textAlignment = NSTextAlignmentLeft;
         _fundCodeField.font = [UIFont systemFontOfSize:13];
         _fundCodeField.keyboardType = UIKeyboardTypeNumberPad;
+        _fundCodeField.enabled = NO;
     }
     return _fundCodeField;
 }
@@ -46,32 +48,41 @@
         _holdValueField.textAlignment = NSTextAlignmentRight;
         _holdValueField.font = [UIFont systemFontOfSize:13];
         _holdValueField.keyboardType = UIKeyboardTypeDecimalPad;
+        _holdValueField.delegate = self;
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
+        label.backgroundColor = kBlueColor;
+        label.text = @"¥";
+        [label sizeToFit];
+        _holdValueField.leftView = label;
     }
     return _holdValueField;
 }
 
-- (UITextField *)estimatedValueField {
-    if (!_estimatedValueField) {
-        _estimatedValueField = [[UITextField alloc] initWithFrame:CGRectZero];
-        _estimatedValueField.layer.cornerRadius = 6;
-        _estimatedValueField.layer.masksToBounds = YES;
-        _estimatedValueField.backgroundColor = [UIColor redColor];
-        _estimatedValueField.textColor = [UIColor whiteColor];
-        _estimatedValueField.textAlignment = NSTextAlignmentCenter;
-        _estimatedValueField.font = [UIFont systemFontOfSize:13];
-        _estimatedValueField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+- (UITextField *)riseField {
+    if (!_riseField) {
+        _riseField = [[UITextField alloc] initWithFrame:CGRectZero];
+        _riseField.layer.cornerRadius = 6;
+        _riseField.layer.masksToBounds = YES;
+        _riseField.backgroundColor = [UIColor redColor];
+        _riseField.textColor = [UIColor whiteColor];
+        _riseField.textAlignment = NSTextAlignmentCenter;
+        _riseField.font = [UIFont systemFontOfSize:13];
+        _riseField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+        _riseField.enabled = NO;
     }
-    return _estimatedValueField;
+    return _riseField;
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         [self.contentView addSubview:self.fundNameField];
         [self.contentView addSubview:self.fundCodeField];
         [self.contentView addSubview:self.holdValueField];
-        [self.contentView addSubview:self.estimatedValueField];
+        [self.contentView addSubview:self.riseField];
     }
     return self;
 }
@@ -88,15 +99,30 @@
     self.fundCodeField.text = fund.code;
     
     self.holdValueField.frame = cellFrame.holdValueFieldFrame;
-    self.holdValueField.text = [NSString stringWithFormat:@"￥%.2lf",fund.holdValue];
+    self.holdValueField.text = [NSString stringWithFormat:@"¥%.2lf",fund.holdValue];
     
-    self.estimatedValueField.frame = cellFrame.estimatedValueFieldFrame;
-    if (fund.estimatedValue >= 0) {
-        self.estimatedValueField.text = [NSString stringWithFormat:@"+%.2lf%%",fund.estimatedValue];
-        self.estimatedValueField.backgroundColor = [UIColor redColor];
+    self.riseField.frame = cellFrame.riseFieldFrame;
+    if (fund.rise >= 0) {
+        self.riseField.text = [NSString stringWithFormat:@"+%.2lf%%",fund.rise];
+        self.riseField.backgroundColor = [UIColor redColor];
     } else {
-        self.estimatedValueField.text = [NSString stringWithFormat:@"%.2lf%%",fund.estimatedValue];
-        self.estimatedValueField.backgroundColor = kColorRGB(86, 190, 55);
+        self.riseField.text = [NSString stringWithFormat:@"%.2lf%%",fund.rise];
+        self.riseField.backgroundColor = kColorRGB(86, 190, 55);
+    }
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    if ([textField isEqual:self.holdValueField]) {
+        if (isNullStr(textField.text)) {
+            textField.text = @"¥0.00";
+        } else if (![textField.text containsString:@"¥"]) {
+            textField.text = [@"¥" stringByAppendingString:textField.text];
+        }
+        NSString *holdValueStr = [textField.text substringFromIndex:1];
+        self.cellFrame.fund.holdValue = [holdValueStr floatValue];
+        if (self.endEditingBlock) {
+            self.endEditingBlock(self.cellFrame.fund);
+        }
     }
 }
 

@@ -8,18 +8,25 @@
 
 #import "QPFundViewController.h"
 #import "QPFundCell.h"
-#import "QPFundModel.h"
-#import "QPFundCellFrame.h"
+#import "QPFundHandler.h"
 
-#import "QPFundCompanyModel.h"
+typedef NS_ENUM(NSInteger, FundDataSource) {
+    FromTianTian,
+    FromXiaoXiong,
+};
 
 static NSString *identifier = @"cellID";
+static NSString *userFundDictKey = @"USER_FUND_DICT";
 
 @interface QPFundViewController () <UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, strong) UITableView * fundTableView;
+@property (nonatomic, strong) UITableView *fundTableView;
 
-@property (nonatomic, strong) NSMutableArray * fundDataList;
+@property (nonatomic, strong) NSMutableArray *fundDataList;
+
+@property (nonatomic, strong) NSMutableDictionary *userFundDict;
+
+@property (nonatomic, assign) FundDataSource sourceFrom;
 
 @end
 
@@ -43,8 +50,38 @@ static NSString *identifier = @"cellID";
     return _fundDataList;
 }
 
+- (NSMutableDictionary *)userFundDict {
+    if (!_userFundDict) {
+        _userFundDict = [[NSUserDefaults standardUserDefaults] objectForKey:userFundDictKey];
+        if (![_userFundDict isKindOfClass:[NSMutableDictionary class]]) {
+            _userFundDict = [NSMutableDictionary dictionaryWithDictionary:_userFundDict];
+        }
+        if (!_userFundDict) {
+            _userFundDict = [NSMutableDictionary dictionary];
+        }
+    }
+    return _userFundDict;
+}
+
+- (void)setSourceFrom:(FundDataSource)sourceFrom {
+    _sourceFrom = sourceFrom;
+    
+    switch (sourceFrom) {
+        case FromTianTian:
+            DLog(@"接口数据来自天天基金");
+            break;
+        case FromXiaoXiong:
+            DLog(@"接口数据来自小熊同学");
+            break;
+        default:
+            break;
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.sourceFrom = FromTianTian;
     
     [self initUI];
     [self loadData];
@@ -56,55 +93,80 @@ static NSString *identifier = @"cellID";
     
     UIBarButtonItem *item1 = [[UIBarButtonItem alloc] initWithTitle:@"=" style:UIBarButtonItemStyleDone target:self action:@selector(sumAction)];
     UIBarButtonItem *item2 = [[UIBarButtonItem alloc] initWithTitle:@"+" style:UIBarButtonItemStyleDone target:self action:@selector(addAction)];
-    self.navigationItem.rightBarButtonItems = @[item1, item2];
+    UIBarButtonItem *item3 = [[UIBarButtonItem alloc] initWithTitle:@"天/熊" style:UIBarButtonItemStyleDone target:self action:@selector(changeAction)];
+    self.navigationItem.rightBarButtonItems = @[item1, item2, item3];
     
     [self.view addSubview:self.fundTableView];
 }
 
 - (void)loadData {
     
-    NSArray *arr = @[
-        @{@"code": @"001548", @"name": @"天弘上证50指数A", @"holdValue": @(5583.30), @"estimatedValue": @(0.65)},
-        @{@"code": @"001595", @"name": @"天弘中证银行ETF联接C", @"holdValue": @(1290.46), @"estimatedValue": @(0.19)},
-        @{@"code": @"001632", @"name": @"天弘中证食品饮料指数C", @"holdValue": @(50.01), @"estimatedValue": @(-0.06)},
-        @{@"code": @"003096", @"name": @"中欧医疗健康混合C", @"holdValue": @(5349.21), @"estimatedValue": @(0.26)},
-        @{@"code": @"006122", @"name": @"华安低碳生活混合", @"holdValue": @(2899.55), @"estimatedValue": @(1.53)},
-        @{@"code": @"008115", @"name": @"天弘中证红利低波动100指数C", @"holdValue": @(683.26), @"estimatedValue": @(0.21)},
-        @{@"code": @"008282", @"name": @"国泰CES半导体芯片行业ETF联接C", @"holdValue": @(4300), @"estimatedValue": @(2.42)},
-        @{@"code": @"008888", @"name": @"华夏国证半导体芯片ETF联接C", @"holdValue": @(1500), @"estimatedValue": @(3.02)},
-        @{@"code": @"009777", @"name": @"中欧阿尔法混合C", @"holdValue": @(474.22), @"estimatedValue": @(0.96)},
-        @{@"code": @"161024", @"name": @"富国中证军工指数分级", @"holdValue": @(2703.87), @"estimatedValue": @(5.12)},
-        @{@"code": @"161725", @"name": @"招商中证白酒指数分级", @"holdValue": @(13.55), @"estimatedValue": @(-0.59)},
-        @{@"code": @"161726", @"name": @"招商国证生物医药指数", @"holdValue": @(3138.12), @"estimatedValue": @(-0.16)},
-        @{@"code": @"180031", @"name": @"银华中小盘精选混合", @"holdValue": @(2665.09), @"estimatedValue": @(1.3)},//
-        @{@"code": @"260108", @"name": @"景顺长城新兴成长混合", @"holdValue": @(533.28), @"estimatedValue": @(0.48)},
-        @{@"code": @"320007", @"name": @"诺安成长混合", @"holdValue": @(2233.6), @"estimatedValue": @(2.74)},
-        @{@"code": @"400015", @"name": @"东方新能源汽车主题混合", @"holdValue": @(4121.4), @"estimatedValue": @(1.27)},
-        @{@"code": @"501019", @"name": @"国泰国证航天军工指数", @"holdValue": @(4590.2), @"estimatedValue": @(4.61)},
-    ];
-    for (NSDictionary *dict in arr) {
-        QPFundModel *fund = [QPFundModel modelWithDict:dict];
-        QPFundCellFrame *cellFrame = [[QPFundCellFrame alloc] initWithFund:fund];
-        [self.fundDataList addObject:cellFrame];
+//    NSDictionary *userFundDict = @{
+//        @"001548": @(5583.30),
+//        @"001595": @(1290.46),
+//        @"001632": @(50.01),
+//        @"003096": @(5349.21),
+//        @"006122": @(2899.55),
+//        @"008115": @(683.26),
+//        @"008282": @(4300),
+//        @"008888": @(1500),
+//        @"009777": @(474.22),
+//        @"161024": @(2703.87),
+//        @"161725": @(13.55),
+//        @"161726": @(3138.12),
+//        @"180031": @(2665.09),
+//        @"260108": @(533.28),
+//        @"320007": @(2233.6),
+//        @"400015": @(4121.4),
+//        @"501019": @(4590.2),
+//    };
+
+    if (isNullDict(self.userFundDict)) {
+        [self addAction];
+        return;
     }
-
-    [self.fundTableView reloadData];
     
-    [self getFundInfo];
+    NSString *allCodeStr = @"";
+    for (NSString * code in self.userFundDict.allKeys) {
+        allCodeStr = [allCodeStr stringByAppendingFormat:@"%@,", code];
+    }
+    [self getFundDetailWithCode:allCodeStr];
 }
 
+- (void)updateUserFundDictWithHoldValue:(NSObject *)holdValue code:(NSString *)code {
+    
+    [self.userFundDict setValue:holdValue forKey:code];
+    [[NSUserDefaults standardUserDefaults] setObject:self.userFundDict forKey:userFundDictKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+// 添加持有基金
 - (void)addAction {
-    QPFundModel *fund = [[QPFundModel alloc] init];
-    QPFundCellFrame *cellFrame = [[QPFundCellFrame alloc] initWithFund:fund];
-    [self.fundDataList insertObject:cellFrame atIndex:0];
-    [self.fundTableView reloadData];
+
+    UIAlertController * alertVC = [UIAlertController alertControllerWithTitle:@"添加持有基金" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    [alertVC addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = @"请输入基金代码";
+    }];
+    [alertVC addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = @"请输入持有金额";
+    }];
+    [alertVC addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+    [alertVC addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSString *code = alertVC.textFields.firstObject.text;
+        NSString *value = alertVC.textFields.lastObject.text;
+        [self updateUserFundDictWithHoldValue:value code:code];
+        [self getFundDetailWithCode:code];
+    }]];
+    [alertVC.view layoutIfNeeded];
+    [self presentViewController:alertVC animated:YES completion:nil];
 }
 
+// 计算预估收益
 - (void)sumAction {
     CGFloat sum = 0;
     for (QPFundCellFrame *cellFrame in self.fundDataList) {
         QPFundModel *fund = cellFrame.fund;
-        sum += fund.holdValue * fund.estimatedValue;
+        sum += fund.holdValue * fund.rise;
     }
     sum /= 100;
     
@@ -114,32 +176,103 @@ static NSString *identifier = @"cellID";
     [self presentViewController:alertVC animated:YES completion:nil];
 }
 
-- (void)getFundInfo {
+// 变更数据来源
+- (void)changeAction {
     
-    NSString *path = API_FUND_JZGS;
-//    NSString *path = API_FUND_DETAIL(@"008888");
-//    NSString *path = API_FUND_VALUATION_LIST;
+    if (self.sourceFrom == FromTianTian) {
+        self.sourceFrom = FromXiaoXiong;
+    } else if (self.sourceFrom == FromXiaoXiong) {
+        self.sourceFrom = FromTianTian;
+    }
+    [self loadData];
+}
+
+// 获取基金详情，判断不同数据来源
+- (void)getFundDetailWithCode:(NSString *)code {
     
-    [[QPHTTPManager sharedManager] requestWithMethod:GET path:path params:nil prepare:^{
-        DLog(@"请求基金信息");
-        [QPHTTPManager sharedManager].responseType = HTTP;
-    } success:^(NSURLSessionTask * _Nonnull task, id  _Nullable responseObject) {
-        NSString *str = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        NSString *tmp = @"var gs={op:";
-        if (!isNullStr(str) && str.length >= tmp.length) {
-            str = [@"{\"op\":" stringByAppendingString:[str substringFromIndex:tmp.length]];
-            NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
-            NSError *err;
-            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&err];
-            if (!err) {
-                QPFundCompanyModel *company = [QPFundCompanyModel modelWithDict:dict];
-                DLog(@"%@", company);
-            } else {
-                DLog(@"%@", err);
+    if (isNullStr(code)) { return; }
+    
+    NSArray *codeArr = [code componentsSeparatedByString:@","];
+    if (codeArr.count > 1) {
+        [self.fundDataList removeAllObjects];
+    }
+    
+    if (self.sourceFrom == FromTianTian) {
+        [self getTFundDetailWithCode:code];
+    } else if (self.sourceFrom == FromXiaoXiong) {
+        [self getXFundDetailWithCode:code];
+    }
+}
+
+// 是否添加过相同的基金，有则在原位置更新
+- (BOOL)haveAddSameFundWithNewFund:(QPFundModel *)newFund {
+    
+    BOOL haveSameObj = NO;
+    for (NSInteger i = 0; i < self.fundDataList.count; i ++) {
+        QPFundCellFrame *cellFrame = self.fundDataList[i];
+        QPFundModel *fund = cellFrame.fund;
+        if ([fund.code isEqualToString:newFund.code]) {
+            haveSameObj = YES;
+            cellFrame.fund = newFund;
+            [self.fundDataList replaceObjectAtIndex:i withObject:cellFrame];
+            break;
+        }
+    }
+    return haveSameObj;
+}
+
+// 天天基金接口逻辑
+- (void)getTFundDetailWithCode:(NSString *)code {
+
+    [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].windows.firstObject animated:YES];
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_queue_t queue = dispatch_get_global_queue(0, 0);
+    NSArray *codeArr = [code componentsSeparatedByString:@","];
+    for (NSString *code in codeArr) {
+        if (isNullStr(code)) { continue; }
+        dispatch_group_enter(group);
+        [QPFundHandler handleFundDetailWithCode:code sucBlock:^(QPFundModel * _Nonnull fund) {
+            fund.holdValue = [[self.userFundDict valueForKey:fund.code] floatValue];
+            BOOL haveSame = [self haveAddSameFundWithNewFund:fund];
+            if (!haveSame) {
+                QPFundCellFrame *cellFrame = [[QPFundCellFrame alloc] initWithFund:fund];
+                [self.fundDataList insertObject:cellFrame atIndex:0];
+            }
+            dispatch_group_leave(group);
+        } faiBlock:^(NSString * _Nonnull errMsg) {
+            DLog(@"%@", errMsg);
+            dispatch_group_leave(group);
+        }];
+    }
+    dispatch_group_notify(group, queue, ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].windows.firstObject animated:YES];
+            [self.fundTableView reloadData];
+        });
+    });
+}
+
+// 小熊同学接口逻辑
+- (void)getXFundDetailWithCode:(NSString *)code {
+    
+    [QPFundHandler handleXFundDetailWithCode:code sucBlock:^(QPFundListModel * _Nonnull fundList) {
+        NSArray *codeArr = [code componentsSeparatedByString:@","];
+        for (QPFundModel *fund in fundList.datas) {
+            fund.holdValue = [[self.userFundDict valueForKey:fund.code] floatValue];
+            BOOL haveSame = [self haveAddSameFundWithNewFund:fund];
+            if (!haveSame) {
+                QPFundCellFrame *cellFrame = [[QPFundCellFrame alloc] initWithFund:fund];
+                if (codeArr.count > 1) {
+                    [self.fundDataList addObject:cellFrame];
+                } else {
+                    [self.fundDataList insertObject:cellFrame atIndex:0];
+                }
             }
         }
-    } failure:^(NSURLSessionTask * _Nullable task, NSError * _Nonnull error) {
-        DLog(@"%@", error);
+        [self.fundTableView reloadData];
+    } faiBlock:^(NSString * _Nonnull errMsg) {
+        DLog(@"%@", errMsg);
+        [self.fundTableView reloadData];
     }];
 }
 
@@ -156,6 +289,13 @@ static NSString *identifier = @"cellID";
     }
     QPFundCellFrame *cellFrame = self.fundDataList[indexPath.row];
     cell.cellFrame = cellFrame;
+    __weak typeof(self) weakSelf = self;
+    cell.endEditingBlock = ^(QPFundModel * _Nonnull fund) {
+        __strong typeof(self) strongSelf = weakSelf;
+        QPFundCellFrame *newCellFrame = [[QPFundCellFrame alloc] initWithFund:fund];
+        [strongSelf.fundDataList replaceObjectAtIndex:indexPath.row withObject:newCellFrame];
+        [strongSelf updateUserFundDictWithHoldValue:@(fund.holdValue) code:fund.code];
+    };
     return cell;
 }
 
@@ -163,6 +303,9 @@ static NSString *identifier = @"cellID";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     [self.view endEditing:YES];
+    
+    QPFundCellFrame *cellFrame = self.fundDataList[indexPath.row];
+    DLog(@"%@", cellFrame.fund.name);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
