@@ -17,6 +17,7 @@ PODS:
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
+  - IQKeyboardManager (6.5.6)
   - Masonry (1.1.0)
   - MBProgressHUD (1.2.0)
   - MJExtension (3.2.2)
@@ -29,6 +30,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - FMDB
+  - IQKeyboardManager
   - Masonry
   - MBProgressHUD
   - MJExtension
@@ -37,19 +39,22 @@ DEPENDENCIES:
   - SVProgressHUD
 
 SPEC REPOS:
-  https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - AFNetworking
     - FMDB
+    - IQKeyboardManager
     - Masonry
     - MBProgressHUD
     - MJExtension
     - MJRefresh
-    - SDWebImage
     - SVProgressHUD
+  trunk:
+    - SDWebImage
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  IQKeyboardManager: 2a6e97afdafc7becf0cb17a9a8d795e3a980717f
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJExtension: d9b9c74cbdeb724c1e9ecbb157b318276e62e876
@@ -57,6 +62,6 @@ SPEC CHECKSUMS:
   SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 25387435a2f4683bbee2a991e88fd4fd3061ee03
+PODFILE CHECKSUM: 37f259210c4ad3f590aab2129a2435a2dc56db52
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.8.4

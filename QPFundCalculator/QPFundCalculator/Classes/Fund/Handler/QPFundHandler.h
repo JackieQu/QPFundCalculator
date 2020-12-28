@@ -21,6 +21,11 @@ typedef void(^FundHandleFaiBlock)(NSString *errMsg);
 
 @interface QPFundHandler : NSObject
 
++ (void)showSetFundSoureFrom:(FundDataSource)sourceFrom;
++ (void)showSetFundSortType:(FundDataSortType)sortType;
++ (NSMutableArray <QPFundCellFrame *> *)getSortFundDataListWithSortType:(FundDataSortType)sortType
+                                                       originalDataList:(NSMutableArray <QPFundCellFrame *> *)originalDataList;
+
 // 天天基金
 
 + (void)handleFundCompanyWithSucBlock:(CompanyListHandleSucBlock)sucBlock

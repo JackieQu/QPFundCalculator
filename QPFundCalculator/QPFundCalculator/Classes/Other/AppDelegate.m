@@ -6,6 +6,7 @@
 //
 
 #import "AppDelegate.h"
+#import <IQKeyboardManager.h>
 
 @interface AppDelegate ()
 
@@ -16,9 +17,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [self initIQKeyboardManager];
+    
     return YES;
 }
 
+- (void)initIQKeyboardManager {
+ 
+    [[IQKeyboardManager sharedManager] setEnable:YES];
+    [[IQKeyboardManager sharedManager] setShouldResignOnTouchOutside:YES];
+    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:YES];
+}
 
 #pragma mark - UISceneSession lifecycle
 

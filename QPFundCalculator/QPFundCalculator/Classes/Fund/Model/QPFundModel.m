@@ -7,6 +7,7 @@
 //
 
 #import "QPFundModel.h"
+#import "NSString+Pinyin.h"
 
 @implementation QPFundModel
 
@@ -33,6 +34,14 @@
         @"listTexch"          : @"LISTTEXCH",
         @"isListTarde"        : @"ISLISTTRADE",
     };
+}
+
+- (NSString *)pinyin {
+    
+    if (!_pinyin) {
+        _pinyin = [NSString pinyinFirstLetterWithString:self.name];
+    }
+    return _pinyin;
 }
 
 @end

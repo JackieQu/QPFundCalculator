@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2830454F2599BEA300FC53A9 /* NSString+Pinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830454E2599BEA300FC53A9 /* NSString+Pinyin.m */; };
+		283045552599D59800FC53A9 /* NSURL+Param.m in Sources */ = {isa = PBXBuildFile; fileRef = 283045542599D59800FC53A9 /* NSURL+Param.m */; };
 		28AAC9F325937BE3005534B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28AAC9F125937BE3005534B4 /* Main.storyboard */; };
 		28AAC9F625937BE3005534B4 /* QPFundCalculator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28AAC9F425937BE3005534B4 /* QPFundCalculator.xcdatamodeld */; };
 		28AAC9F825937BE8005534B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28AAC9F725937BE8005534B4 /* Assets.xcassets */; };
@@ -61,6 +63,10 @@
 /* Begin PBXFileReference section */
 		0AA6D77B658DAF56828ECC9B /* Pods-QPFundCalculator-QPFundCalculatorUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QPFundCalculator-QPFundCalculatorUITests.release.xcconfig"; path = "Target Support Files/Pods-QPFundCalculator-QPFundCalculatorUITests/Pods-QPFundCalculator-QPFundCalculatorUITests.release.xcconfig"; sourceTree = "<group>"; };
 		1CE1CE7ACF5859F4E940B9E1 /* Pods-QPFundCalculatorTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QPFundCalculatorTests.debug.xcconfig"; path = "Target Support Files/Pods-QPFundCalculatorTests/Pods-QPFundCalculatorTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2830454D2599BEA300FC53A9 /* NSString+Pinyin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Pinyin.h"; sourceTree = "<group>"; };
+		2830454E2599BEA300FC53A9 /* NSString+Pinyin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Pinyin.m"; sourceTree = "<group>"; };
+		283045532599D59800FC53A9 /* NSURL+Param.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURL+Param.h"; sourceTree = "<group>"; };
+		283045542599D59800FC53A9 /* NSURL+Param.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURL+Param.m"; sourceTree = "<group>"; };
 		28AAC9E525937BE3005534B4 /* QPFundCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QPFundCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28AAC9F225937BE3005534B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		28AAC9F525937BE3005534B4 /* QPFundCalculator.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QPFundCalculator.xcdatamodel; sourceTree = "<group>"; };
@@ -373,6 +379,10 @@
 				28AACA7825938A2F005534B4 /* UIColor+Random.m */,
 				28AACA7125938A2E005534B4 /* NSData+Hex.h */,
 				28AACA7425938A2F005534B4 /* NSData+Hex.m */,
+				2830454D2599BEA300FC53A9 /* NSString+Pinyin.h */,
+				2830454E2599BEA300FC53A9 /* NSString+Pinyin.m */,
+				283045532599D59800FC53A9 /* NSURL+Param.h */,
+				283045542599D59800FC53A9 /* NSURL+Param.m */,
 				28AACA7525938A2F005534B4 /* QPCacheHelper.h */,
 				28AACA7225938A2E005534B4 /* QPCacheHelper.m */,
 			);
@@ -402,14 +412,14 @@
 		28AACAAC25938C8B005534B4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				28AACAB725938CD3005534B4 /* QPFundModel.h */,
-				28AACAB425938CD3005534B4 /* QPFundModel.m */,
 				28AACAB625938CD3005534B4 /* QPFundCellFrame.h */,
 				28AACAB525938CD3005534B4 /* QPFundCellFrame.m */,
-				28E56BA1259488D60000CF08 /* QPFundCompanyModel.h */,
-				28E56BA2259488D60000CF08 /* QPFundCompanyModel.m */,
+				28AACAB725938CD3005534B4 /* QPFundModel.h */,
+				28AACAB425938CD3005534B4 /* QPFundModel.m */,
 				28E56BA82595874C0000CF08 /* QPFundListModel.h */,
 				28E56BA92595874C0000CF08 /* QPFundListModel.m */,
+				28E56BA1259488D60000CF08 /* QPFundCompanyModel.h */,
+				28E56BA2259488D60000CF08 /* QPFundCompanyModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -700,12 +710,14 @@
 				28AACA7B25938A2F005534B4 /* NSData+Hex.m in Sources */,
 				28AACA8E25938AD3005534B4 /* QPBaseViewController.m in Sources */,
 				28E56BAA2595874C0000CF08 /* QPFundListModel.m in Sources */,
+				2830454F2599BEA300FC53A9 /* NSString+Pinyin.m in Sources */,
 				28E56BA3259488D60000CF08 /* QPFundCompanyModel.m in Sources */,
 				28AACA7925938A2F005534B4 /* QPCacheHelper.m in Sources */,
 				28AACAB025938CC5005534B4 /* QPFundViewController.m in Sources */,
 				28AACA4225937CE9005534B4 /* SceneDelegate.m in Sources */,
 				28AACA7C25938A2F005534B4 /* UIColor+Random.m in Sources */,
 				28AACA4325937CE9005534B4 /* main.m in Sources */,
+				283045552599D59800FC53A9 /* NSURL+Param.m in Sources */,
 				28E56BB125958EDD0000CF08 /* QPFundHandler.m in Sources */,
 				28AACA9A25938AEA005534B4 /* QPBaseTabBarModel.m in Sources */,
 				28AACAA625938B1E005534B4 /* QPHomeViewController.m in Sources */,

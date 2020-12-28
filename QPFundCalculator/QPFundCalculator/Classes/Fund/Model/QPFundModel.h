@@ -10,14 +10,35 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSInteger, FundDataSource) {
+    FromTianTian,
+    FromXiaoXiong,
+};
+
+typedef NS_ENUM(NSInteger, FundDataSortType) {
+    SortByRiseUp,
+    SortByRiseDown,
+    SortByNetValueUp,
+    SortByNetValueDown,
+    SortByEstimatedValueUp,
+    SortByEstimatedValueDown,
+    SortByHoldValueUp,
+    SortByHoldValueDown,
+    SortByCodeUp,
+    SortByCodeDown,
+    SortByNameUp,
+    SortByNameDown,
+};
+
 @interface QPFundModel : QPBaseModel
 
 @property (nonatomic, strong) NSString *code;
 @property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *pinyin;
 @property (nonatomic, assign) CGFloat holdValue;            // 持有值
 @property (nonatomic, assign) CGFloat netValue;             // 净值
 @property (nonatomic, assign) CGFloat estimatedValue;       // 估值
-@property (nonatomic, assign) CGFloat estimatedRiseValue;   // 估值
+@property (nonatomic, assign) CGFloat estimatedRiseValue;   // 估值涨跌值
 @property (nonatomic, assign) CGFloat rise;                 // 涨幅
 @property (nonatomic, strong) NSString *estimatedTime;      // 估值时间
 @property (nonatomic, strong) NSString *referenceDate;      // 基准日期

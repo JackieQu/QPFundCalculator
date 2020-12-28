@@ -6,8 +6,9 @@
 //
 
 #import "QPHTTPManager.h"
-#import "QPAPIConfig.h"
 #import <AFNetworking.h>
+#import "QPAPIConfig.h"
+#import "NSURL+Param.h"
 
 @interface QPHTTPManager ()
 
@@ -107,6 +108,7 @@
             urlStr = [SERVER_HOST stringByAppendingString:path];
         }
         urlStr = [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        DLog(@"%@", [[NSURL URLWithString:urlStr] totalURLStrWithParameterDict:params])
         
         switch (method) {
             case GET:

@@ -17,6 +17,7 @@ target 'QPFundCalculator' do
   pod 'MJRefresh'
   pod 'MJExtension'
   pod 'FMDB'
+  pod 'IQKeyboardManager'
 
   target 'QPFundCalculatorTests' do
     inherit! :search_paths

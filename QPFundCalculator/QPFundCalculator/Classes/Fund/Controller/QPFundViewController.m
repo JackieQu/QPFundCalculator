@@ -10,23 +10,16 @@
 #import "QPFundCell.h"
 #import "QPFundHandler.h"
 
-typedef NS_ENUM(NSInteger, FundDataSource) {
-    FromTianTian,
-    FromXiaoXiong,
-};
-
 static NSString *identifier = @"cellID";
 static NSString *userFundDictKey = @"USER_FUND_DICT";
 
 @interface QPFundViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *fundTableView;
-
 @property (nonatomic, strong) NSMutableArray *fundDataList;
-
 @property (nonatomic, strong) NSMutableDictionary *userFundDict;
-
 @property (nonatomic, assign) FundDataSource sourceFrom;
+@property (nonatomic, assign) FundDataSortType sortType;
 
 @end
 
@@ -65,23 +58,19 @@ static NSString *userFundDictKey = @"USER_FUND_DICT";
 
 - (void)setSourceFrom:(FundDataSource)sourceFrom {
     _sourceFrom = sourceFrom;
-    
-    switch (sourceFrom) {
-        case FromTianTian:
-            DLog(@"接口数据来自天天基金");
-            break;
-        case FromXiaoXiong:
-            DLog(@"接口数据来自小熊同学");
-            break;
-        default:
-            break;
-    }
+    [QPFundHandler showSetFundSoureFrom:sourceFrom];
+}
+
+- (void)setSortType:(FundDataSortType)sortType {
+    _sortType = sortType;
+    [QPFundHandler showSetFundSortType:sortType];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.sourceFrom = FromTianTian;
+    self.sortType = SortByRiseDown;
     
     [self initUI];
     [self loadData];
@@ -94,32 +83,13 @@ static NSString *userFundDictKey = @"USER_FUND_DICT";
     UIBarButtonItem *item1 = [[UIBarButtonItem alloc] initWithTitle:@"=" style:UIBarButtonItemStyleDone target:self action:@selector(sumAction)];
     UIBarButtonItem *item2 = [[UIBarButtonItem alloc] initWithTitle:@"+" style:UIBarButtonItemStyleDone target:self action:@selector(addAction)];
     UIBarButtonItem *item3 = [[UIBarButtonItem alloc] initWithTitle:@"天/熊" style:UIBarButtonItemStyleDone target:self action:@selector(changeAction)];
-    self.navigationItem.rightBarButtonItems = @[item1, item2, item3];
+    UIBarButtonItem *item4 = [[UIBarButtonItem alloc] initWithTitle:@"↑↓" style:UIBarButtonItemStyleDone target:self action:@selector(sortAction)];
+    self.navigationItem.rightBarButtonItems = @[item1, item2, item3, item4];
     
     [self.view addSubview:self.fundTableView];
 }
 
 - (void)loadData {
-    
-//    NSDictionary *userFundDict = @{
-//        @"001548": @(5583.30),
-//        @"001595": @(1290.46),
-//        @"001632": @(50.01),
-//        @"003096": @(5349.21),
-//        @"006122": @(2899.55),
-//        @"008115": @(683.26),
-//        @"008282": @(4300),
-//        @"008888": @(1500),
-//        @"009777": @(474.22),
-//        @"161024": @(2703.87),
-//        @"161725": @(13.55),
-//        @"161726": @(3138.12),
-//        @"180031": @(2665.09),
-//        @"260108": @(533.28),
-//        @"320007": @(2233.6),
-//        @"400015": @(4121.4),
-//        @"501019": @(4590.2),
-//    };
 
     if (isNullDict(self.userFundDict)) {
         [self addAction];
@@ -133,9 +103,15 @@ static NSString *userFundDictKey = @"USER_FUND_DICT";
     [self getFundDetailWithCode:allCodeStr];
 }
 
-- (void)updateUserFundDictWithHoldValue:(NSObject *)holdValue code:(NSString *)code {
-    
-    [self.userFundDict setValue:holdValue forKey:code];
+- (void)updateUserFundDictWithHoldValue:(id)holdValue code:(NSString *)code {
+
+    CGFloat holdValueFloat = [holdValue floatValue];
+    if (holdValueFloat >= 0) {
+        [self.userFundDict setValue:holdValue forKey:code];
+    } else {
+        [self.userFundDict removeObjectForKey:code];
+    }
+
     [[NSUserDefaults standardUserDefaults] setObject:self.userFundDict forKey:userFundDictKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
@@ -164,11 +140,14 @@ static NSString *userFundDictKey = @"USER_FUND_DICT";
 // 计算预估收益
 - (void)sumAction {
     CGFloat sum = 0;
+    CGFloat totalAmount = 0;
     for (QPFundCellFrame *cellFrame in self.fundDataList) {
         QPFundModel *fund = cellFrame.fund;
         sum += fund.holdValue * fund.rise;
+        totalAmount += fund.holdValue;
     }
     sum /= 100;
+    DLog(@"持有总额：￥%.2lf", totalAmount);
     
     NSString *msg = [NSString stringWithFormat:@"￥%.2lf",sum];
     UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"预计收益" message:msg preferredStyle:UIAlertControllerStyleAlert];
@@ -185,6 +164,33 @@ static NSString *userFundDictKey = @"USER_FUND_DICT";
         self.sourceFrom = FromTianTian;
     }
     [self loadData];
+}
+
+// 变更排序类型
+- (void)sortAction {
+    
+    self.sortType += 1;
+    if (self.sortType > SortByNameDown) {
+        self.sortType = SortByRiseUp;
+    }
+    self.fundDataList = [QPFundHandler getSortFundDataListWithSortType:self.sortType originalDataList:self.fundDataList];
+    [self.fundTableView reloadData];
+}
+
+// 删除持有基金
+- (void)deleteActionWithIndex:(NSInteger)index {
+    
+    if (index < 0 || index >= self.fundDataList.count) { return; }
+    
+    QPFundCellFrame *cellFrame = self.fundDataList[index];
+    UIAlertController * alertVC = [UIAlertController alertControllerWithTitle:@"是否删除基金" message:cellFrame.fund.name preferredStyle:UIAlertControllerStyleAlert];
+    [alertVC addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+    [alertVC addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self updateUserFundDictWithHoldValue:@(-1) code:cellFrame.fund.code];
+        [self.fundDataList removeObjectAtIndex:index];
+        [self.fundTableView reloadData];
+    }]];
+    [self presentViewController:alertVC animated:YES completion:nil];
 }
 
 // 获取基金详情，判断不同数据来源
@@ -247,6 +253,7 @@ static NSString *userFundDictKey = @"USER_FUND_DICT";
     dispatch_group_notify(group, queue, ^{
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].windows.firstObject animated:YES];
+            self.fundDataList = [QPFundHandler getSortFundDataListWithSortType:self.sortType originalDataList:self.fundDataList];
             [self.fundTableView reloadData];
         });
     });
@@ -256,19 +263,15 @@ static NSString *userFundDictKey = @"USER_FUND_DICT";
 - (void)getXFundDetailWithCode:(NSString *)code {
     
     [QPFundHandler handleXFundDetailWithCode:code sucBlock:^(QPFundListModel * _Nonnull fundList) {
-        NSArray *codeArr = [code componentsSeparatedByString:@","];
         for (QPFundModel *fund in fundList.datas) {
             fund.holdValue = [[self.userFundDict valueForKey:fund.code] floatValue];
             BOOL haveSame = [self haveAddSameFundWithNewFund:fund];
             if (!haveSame) {
                 QPFundCellFrame *cellFrame = [[QPFundCellFrame alloc] initWithFund:fund];
-                if (codeArr.count > 1) {
-                    [self.fundDataList addObject:cellFrame];
-                } else {
-                    [self.fundDataList insertObject:cellFrame atIndex:0];
-                }
+                [self.fundDataList insertObject:cellFrame atIndex:0];
             }
         }
+        self.fundDataList = [QPFundHandler getSortFundDataListWithSortType:self.sortType originalDataList:self.fundDataList];
         [self.fundTableView reloadData];
     } faiBlock:^(NSString * _Nonnull errMsg) {
         DLog(@"%@", errMsg);
@@ -302,15 +305,25 @@ static NSString *userFundDictKey = @"USER_FUND_DICT";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    [self.view endEditing:YES];
-    
-    QPFundCellFrame *cellFrame = self.fundDataList[indexPath.row];
-    DLog(@"%@", cellFrame.fund.name);
+    QPFundModel *fund = [self.fundDataList[indexPath.row] fund];
+    DLog(@"%@-%@", fund.name, fund.pinyin);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     QPFundCellFrame *cellFrame = self.fundDataList[indexPath.row];
     return cellFrame.cellH;
+}
+
+- (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UIContextualAction *action = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleNormal title:@"删除" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
+        [self deleteActionWithIndex:indexPath.row];
+    }];
+    action.backgroundColor = kRedColor;
+    
+    NSArray *actions = [NSArray arrayWithObjects:action, nil];
+    UISwipeActionsConfiguration *config = [UISwipeActionsConfiguration configurationWithActions:actions];
+    return config;
 }
 
 @end
