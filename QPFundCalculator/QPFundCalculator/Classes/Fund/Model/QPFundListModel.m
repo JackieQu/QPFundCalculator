@@ -10,7 +10,6 @@
 @implementation QPFundListModel
 
 + (NSDictionary *)mj_replacedKeyFromPropertyName {
-    
     return @{
         @"datas"      : @[@"Datas", @"data"],
         @"totalCount" : @"TotalCount",

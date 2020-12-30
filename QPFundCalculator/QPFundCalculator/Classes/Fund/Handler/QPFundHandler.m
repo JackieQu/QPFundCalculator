@@ -141,6 +141,26 @@ static NSString * kErrMsg = @"请求失败，请稍后再试...";
     }];
 }
 
++ (void)handleFundValuationListWithSucBlock:(FundListHandleSucBlock)sucBlock
+                                   faiBlock:(FundHandleFaiBlock)faiBlock {
+    
+    [[QPHTTPManager sharedManager] requestWithMethod:GET path:API_FUND_VALUATION_LIST params:nil prepare:^{
+        DLog(@"请求基金估值列表");
+    } success:^(NSURLSessionTask * _Nonnull task, id  _Nullable responseObject) {
+        QPFundListModel * fundList = [QPFundListModel modelWithDict:responseObject];
+        if (!fundList.errCode) {
+            if (sucBlock) {
+                sucBlock(fundList);
+            }
+        } else {
+            if (faiBlock) { faiBlock(fundList.errMsg); }
+        }
+    } failure:^(NSURLSessionTask * _Nullable task, NSError * _Nonnull error) {
+        DLog(@"%@", error);
+        if (faiBlock) { faiBlock(kErrMsg); }
+    }];
+}
+
 + (void)handleFundDetailWithCode:(NSString *)code
                         sucBlock:(FundHandleSucBlock)sucBlock
                         faiBlock:(FundHandleFaiBlock)faiBlock {
@@ -174,26 +194,6 @@ static NSString * kErrMsg = @"请求失败，请稍后再试...";
     }];
 }
 
-+ (void)handleFundValuationListWithSucBlock:(FundListHandleSucBlock)sucBlock
-                                   faiBlock:(FundHandleFaiBlock)faiBlock {
-    
-    [[QPHTTPManager sharedManager] requestWithMethod:GET path:API_FUND_VALUATION_LIST params:nil prepare:^{
-        DLog(@"请求基金估值列表");
-    } success:^(NSURLSessionTask * _Nonnull task, id  _Nullable responseObject) {
-        QPFundListModel * fundList = [QPFundListModel modelWithDict:responseObject];
-        if (!fundList.errCode) {
-            if (sucBlock) {
-                sucBlock(fundList);
-            }
-        } else {
-            if (faiBlock) { faiBlock(fundList.errMsg); }
-        }
-    } failure:^(NSURLSessionTask * _Nullable task, NSError * _Nonnull error) {
-        DLog(@"%@", error);
-        if (faiBlock) { faiBlock(kErrMsg); }
-    }];
-}
-
 #pragma mark - 小熊同学
 
 + (void)handleXFundDetailWithCode:(NSString *)code
@@ -201,7 +201,7 @@ static NSString * kErrMsg = @"请求失败，请稍后再试...";
                          faiBlock:(FundHandleFaiBlock)faiBlock {
     
     [[QPHTTPManager sharedManager] requestWithMethod:GET path:API_XFUND_DETAIL(code) params:nil prepare:^{
-        DLog(@"请求小熊同学基金详情");
+//        DLog(@"请求小熊同学基金详情");
         [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].windows.firstObject animated:YES];
     } success:^(NSURLSessionTask * _Nonnull task, id  _Nullable responseObject) {
         [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].windows.firstObject animated:YES];

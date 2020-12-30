@@ -49,11 +49,6 @@
         _holdValueField.font = [UIFont systemFontOfSize:13];
         _holdValueField.keyboardType = UIKeyboardTypeDecimalPad;
         _holdValueField.delegate = self;
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
-        label.backgroundColor = kBlueColor;
-        label.text = @"¥";
-        [label sizeToFit];
-        _holdValueField.leftView = label;
     }
     return _holdValueField;
 }
@@ -102,9 +97,12 @@
     self.holdValueField.text = [NSString stringWithFormat:@"¥%.2lf",fund.holdValue];
     
     self.riseField.frame = cellFrame.riseFieldFrame;
-    if (fund.rise >= 0) {
+    if (fund.rise > 0) {
         self.riseField.text = [NSString stringWithFormat:@"+%.2lf%%",fund.rise];
-        self.riseField.backgroundColor = [UIColor redColor];
+        self.riseField.backgroundColor = kRedColor;
+    } else if (fund.rise == 0) {
+        self.riseField.text = @"0.00%";
+        self.riseField.backgroundColor = kLightGrayColor;
     } else {
         self.riseField.text = [NSString stringWithFormat:@"%.2lf%%",fund.rise];
         self.riseField.backgroundColor = kColorRGB(86, 190, 55);
