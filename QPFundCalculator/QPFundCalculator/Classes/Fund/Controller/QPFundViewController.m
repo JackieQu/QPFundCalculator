@@ -105,6 +105,7 @@ static NSString *userFundDictKey = @"USER_FUND_DICT";
 - (void)loadData {
     if (isNullDict(self.userFundDict)) {
         [self addAction];
+        [self.fundTableView.mj_header endRefreshing];
         return;
     }
     
@@ -116,7 +117,7 @@ static NSString *userFundDictKey = @"USER_FUND_DICT";
 }
 
 - (void)loadMoreData {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.fundTableView.mj_footer endRefreshingWithNoMoreData];
         });
@@ -137,8 +138,7 @@ static NSString *userFundDictKey = @"USER_FUND_DICT";
 
 // 计算预估收益
 - (void)sumAction {
-    CGFloat sum = 0;
-    CGFloat totalAmount = 0;
+    CGFloat sum = 0, totalAmount = 0;
     for (QPFundCellFrame *cellFrame in self.fundDataList) {
         QPFundModel *fund = cellFrame.fund;
         sum += fund.holdValue * fund.rise;
@@ -146,7 +146,7 @@ static NSString *userFundDictKey = @"USER_FUND_DICT";
     }
     sum /= 100;
     DLog(@"持有总额：￥%.2lf", totalAmount);
-    
+    DLog(@"%@", self.userFundDict);
     NSString *msg = [NSString stringWithFormat:@"￥%.2lf",sum];
     UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"预计收益" message:msg preferredStyle:UIAlertControllerStyleAlert];
     [alertVC addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil]];
