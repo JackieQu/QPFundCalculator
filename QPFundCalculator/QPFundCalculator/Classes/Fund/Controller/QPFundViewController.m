@@ -71,12 +71,12 @@ static NSString *userFundDictKey = @"USER_FUND_DICT";
 
 - (void)setSourceFrom:(FundDataSource)sourceFrom {
     _sourceFrom = sourceFrom;
-    [QPFundHandler showSetFundSoureFrom:sourceFrom];
+    [QPFundHandler setFundSourceFrom:sourceFrom show:YES];
 }
 
 - (void)setSortType:(FundDataSortType)sortType {
     _sortType = sortType;
-    [QPFundHandler showSetFundSortType:sortType];
+    [QPFundHandler setFundSortType:sortType show:YES];
 }
 
 - (void)viewDidLoad {
@@ -146,7 +146,7 @@ static NSString *userFundDictKey = @"USER_FUND_DICT";
     }
     sum /= 100;
     DLog(@"持有总额：￥%.2lf", totalAmount);
-    DLog(@"%@", self.userFundDict);
+//    DLog(@"%@", self.userFundDict);
     NSString *msg = [NSString stringWithFormat:@"￥%.2lf",sum];
     UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"预计收益" message:msg preferredStyle:UIAlertControllerStyleAlert];
     [alertVC addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil]];

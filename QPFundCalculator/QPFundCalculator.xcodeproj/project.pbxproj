@@ -36,6 +36,8 @@
 		28AACAB825938CD3005534B4 /* QPFundModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AACAB425938CD3005534B4 /* QPFundModel.m */; };
 		28AACAB925938CD3005534B4 /* QPFundCellFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AACAB525938CD3005534B4 /* QPFundCellFrame.m */; };
 		28AACABF25938CDA005534B4 /* QPFundCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AACABE25938CDA005534B4 /* QPFundCell.m */; };
+		28E3FF9A25A467EB0063415D /* QPOptionMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E3FF9925A467EB0063415D /* QPOptionMaskView.m */; };
+		28E3FFA325A46F1A0063415D /* QPOptionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E3FFA225A46F1A0063415D /* QPOptionModel.m */; };
 		28E56BA3259488D60000CF08 /* QPFundCompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E56BA2259488D60000CF08 /* QPFundCompanyModel.m */; };
 		28E56BAA2595874C0000CF08 /* QPFundListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E56BA92595874C0000CF08 /* QPFundListModel.m */; };
 		28E56BB125958EDD0000CF08 /* QPFundHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E56BB025958EDD0000CF08 /* QPFundHandler.m */; };
@@ -123,6 +125,10 @@
 		28AACAB725938CD3005534B4 /* QPFundModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QPFundModel.h; sourceTree = "<group>"; };
 		28AACABD25938CDA005534B4 /* QPFundCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QPFundCell.h; sourceTree = "<group>"; };
 		28AACABE25938CDA005534B4 /* QPFundCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QPFundCell.m; sourceTree = "<group>"; };
+		28E3FF9825A467EB0063415D /* QPOptionMaskView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QPOptionMaskView.h; path = QPFundCalculator/Classes/Home/QPOptionMaskView.h; sourceTree = SOURCE_ROOT; };
+		28E3FF9925A467EB0063415D /* QPOptionMaskView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = QPOptionMaskView.m; path = QPFundCalculator/Classes/Home/QPOptionMaskView.m; sourceTree = SOURCE_ROOT; };
+		28E3FFA125A46F1A0063415D /* QPOptionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QPOptionModel.h; path = QPFundCalculator/Classes/Home/QPOptionModel.h; sourceTree = SOURCE_ROOT; };
+		28E3FFA225A46F1A0063415D /* QPOptionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = QPOptionModel.m; path = QPFundCalculator/Classes/Home/QPOptionModel.m; sourceTree = SOURCE_ROOT; };
 		28E56BA1259488D60000CF08 /* QPFundCompanyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QPFundCompanyModel.h; sourceTree = "<group>"; };
 		28E56BA2259488D60000CF08 /* QPFundCompanyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QPFundCompanyModel.m; sourceTree = "<group>"; };
 		28E56BA82595874C0000CF08 /* QPFundListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QPFundListModel.h; sourceTree = "<group>"; };
@@ -313,6 +319,8 @@
 		28AACA3925937CE9005534B4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				28E3FFA125A46F1A0063415D /* QPOptionModel.h */,
+				28E3FFA225A46F1A0063415D /* QPOptionModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -320,6 +328,8 @@
 		28AACA3A25937CE9005534B4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				28E3FF9825A467EB0063415D /* QPOptionMaskView.h */,
+				28E3FF9925A467EB0063415D /* QPOptionMaskView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -730,6 +740,8 @@
 				28AACAB825938CD3005534B4 /* QPFundModel.m in Sources */,
 				28AACAB925938CD3005534B4 /* QPFundCellFrame.m in Sources */,
 				28AACAA025938B14005534B4 /* QPProfileViewController.m in Sources */,
+				28E3FFA325A46F1A0063415D /* QPOptionModel.m in Sources */,
+				28E3FF9A25A467EB0063415D /* QPOptionMaskView.m in Sources */,
 				28AACA8325938AB0005534B4 /* QPHTTPManager.m in Sources */,
 				28AACABF25938CDA005534B4 /* QPFundCell.m in Sources */,
 				2830456A259AC4E900FC53A9 /* QPFundTableView.m in Sources */,

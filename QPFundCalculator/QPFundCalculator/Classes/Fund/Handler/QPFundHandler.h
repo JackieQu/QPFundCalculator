@@ -21,9 +21,9 @@ typedef void(^FundHandleFaiBlock)(NSString *errMsg);
 
 @interface QPFundHandler : NSObject
 
-+ (void)showSetFundSoureFrom:(FundDataSource)sourceFrom;
++ (NSString *)setFundSourceFrom:(FundDataSource)sourceFrom show:(BOOL)show;
 
-+ (void)showSetFundSortType:(FundDataSortType)sortType;
++ (NSString *)setFundSortType:(FundDataSortType)sortType show:(BOOL)show;
 
 + (NSMutableArray <QPFundCellFrame *> *)getSortFundDataListWithSortType:(FundDataSortType)sortType
                                                        originalDataList:(NSMutableArray <QPFundCellFrame *> *)originalDataList;

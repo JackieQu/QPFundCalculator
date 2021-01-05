@@ -11,62 +11,72 @@ static NSString * kErrMsg = @"请求失败，请稍后再试...";
 
 @implementation QPFundHandler
 
-+ (void)showSetFundSoureFrom:(FundDataSource)sourceFrom {
++ (NSString *)setFundSourceFrom:(FundDataSource)sourceFrom show:(BOOL)show {
     
+    NSString *sourceStr = @"";
     switch (sourceFrom) {
         case FromTianTian:
-            DLog(@"接口数据来自天天基金");
+            sourceStr = @"天天基金";
             break;
         case FromXiaoXiong:
-            DLog(@"接口数据来自小熊同学");
+            sourceStr = @"小熊同学";
             break;
         default:
             break;
     }
+    if (show) {
+        DLog(@"接口数据来自%@", sourceStr);
+    }
+    return sourceStr;
 }
 
-+ (void)showSetFundSortType:(FundDataSortType)sortType {
++ (NSString *)setFundSortType:(FundDataSortType)sortType show:(BOOL)show {
     
+    NSString *typeStr = @"";
     switch (sortType) {
         case SortByRiseUp:
-            DLog(@"按涨幅升序排序");
+            typeStr = @"涨幅升序";
             break;
         case SortByRiseDown:
-            DLog(@"按涨幅降序排序");
+            typeStr = @"涨幅降序";
             break;
         case SortByNetValueUp:
-            DLog(@"按净值升序排序");
+            typeStr = @"净值升序";
             break;
         case SortByNetValueDown:
-            DLog(@"按净值降序排序");
+            typeStr = @"净值降序";
             break;
         case SortByEstimatedValueUp:
-            DLog(@"按估值升序排序");
+            typeStr = @"估值升序";
             break;
         case SortByEstimatedValueDown:
-            DLog(@"按估值降序排序");
+            typeStr = @"估值降序";
             break;
         case SortByHoldValueUp:
-            DLog(@"按持有升序排序");
+            typeStr = @"持有升序";
             break;
         case SortByHoldValueDown:
-            DLog(@"按持有降序排序");
+            typeStr = @"持有降序";
             break;
         case SortByCodeUp:
-            DLog(@"按基金代码升序排序");
+            typeStr = @"基金代码升序";
             break;
         case SortByCodeDown:
-            DLog(@"按基金代码降序排序");
+            typeStr = @"基金代码降序";
             break;
         case SortByNameUp:
-            DLog(@"按名称拼音升序排序");
+            typeStr = @"名称拼音升序";
             break;
         case SortByNameDown:
-            DLog(@"按名称拼音降序排序");
+            typeStr = @"名称拼音降序";
             break;
         default:
             break;
     }
+    if (show) {
+        DLog(@"按%@排序", typeStr);
+    }
+    return typeStr;
 }
 
 + (NSMutableArray<QPFundCellFrame *> *)getSortFundDataListWithSortType:(FundDataSortType)sortType
