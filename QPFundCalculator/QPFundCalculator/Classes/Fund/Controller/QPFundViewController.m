@@ -11,8 +11,6 @@
 #import "QPFundHandler.h"
 #import <MJRefresh.h>
 
-static NSString *userFundDictKey = @"USER_FUND_DICT";
-
 @interface QPFundViewController ()
 
 @property (nonatomic, strong) QPFundTableView *fundTableView;
@@ -58,7 +56,7 @@ static NSString *userFundDictKey = @"USER_FUND_DICT";
 
 - (NSMutableDictionary *)userFundDict {
     if (!_userFundDict) {
-        _userFundDict = [[NSUserDefaults standardUserDefaults] objectForKey:userFundDictKey];
+        _userFundDict = [[NSUserDefaults standardUserDefaults] objectForKey:USER_FUND_DICT];
         if (![_userFundDict isKindOfClass:[NSMutableDictionary class]]) {
             _userFundDict = [NSMutableDictionary dictionaryWithDictionary:_userFundDict];
         }
@@ -82,11 +80,10 @@ static NSString *userFundDictKey = @"USER_FUND_DICT";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.sourceFrom = FromTianTian;
-    self.sortType = SortByRiseDown;
+    self.sourceFrom = [QPFundHandler getUserDefaultSourceFrom];
+    self.sortType = [QPFundHandler getUserDefaultSortType];
     
     [self initUI];
-//    [self loadData];
     [self.fundTableView.mj_header beginRefreshing];
 }
 
@@ -132,7 +129,7 @@ static NSString *userFundDictKey = @"USER_FUND_DICT";
         [self.userFundDict removeObjectForKey:code];
     }
 
-    [[NSUserDefaults standardUserDefaults] setObject:self.userFundDict forKey:userFundDictKey];
+    [[NSUserDefaults standardUserDefaults] setObject:self.userFundDict forKey:USER_FUND_DICT];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -146,7 +143,7 @@ static NSString *userFundDictKey = @"USER_FUND_DICT";
     }
     sum /= 100;
     DLog(@"持有总额：￥%.2lf", totalAmount);
-//    DLog(@"%@", self.userFundDict);
+
     NSString *msg = [NSString stringWithFormat:@"￥%.2lf",sum];
     UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"预计收益" message:msg preferredStyle:UIAlertControllerStyleAlert];
     [alertVC addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil]];
@@ -180,6 +177,7 @@ static NSString *userFundDictKey = @"USER_FUND_DICT";
     } else if (self.sourceFrom == FromXiaoXiong) {
         self.sourceFrom = FromTianTian;
     }
+    [QPFundHandler setUserDefaultSourceFrom:self.sourceFrom];
     [self loadData];
 }
 
@@ -189,6 +187,7 @@ static NSString *userFundDictKey = @"USER_FUND_DICT";
     if (self.sortType > SortByNameDown) {
         self.sortType = SortByRiseUp;
     }
+    [QPFundHandler setUserDefaultSortType:self.sortType];
     self.fundDataList = [QPFundHandler getSortFundDataListWithSortType:self.sortType originalDataList:self.fundDataList];
     self.fundTableView.fundDataList = self.fundDataList;
 }

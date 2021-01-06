@@ -11,12 +11,12 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSInteger, FundDataSource) {
-    FromTianTian,
+    FromTianTian = 8001,
     FromXiaoXiong,
 };
 
 typedef NS_ENUM(NSInteger, FundDataSortType) {
-    SortByRiseUp,
+    SortByRiseUp = 6001,
     SortByRiseDown,
     SortByNetValueUp,
     SortByNetValueDown,

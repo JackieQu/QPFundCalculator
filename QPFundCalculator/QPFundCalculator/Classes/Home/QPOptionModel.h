@@ -6,16 +6,26 @@
 //
 
 #import "QPBaseModel.h"
+#import "QPFundHandler.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+typedef NS_ENUM(NSInteger, OptionType) {
+    OptionOfSourceFrom,
+    OptionOfSortType,
+};
 
 @interface QPOptionModel : QPBaseModel
 
 @property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) NSString *code;
 @property (nonatomic, assign) NSInteger ID;
+@property (nonatomic, assign) OptionType type;
+@property (nonatomic, assign) BOOL isSelected;
 
-- (instancetype)initWithID:(NSInteger)ID code:(NSString *)code title:(NSString *)title;
+@property (nonatomic, strong) QPOptionModel *selectedOption;
+
++ (instancetype)initWithID:(NSInteger)ID type:(OptionType)type;
+- (instancetype)initWithID:(NSInteger)ID type:(OptionType)type title:(NSString *)title;
 
 @end
 

@@ -11,6 +11,32 @@ static NSString * kErrMsg = @"请求失败，请稍后再试...";
 
 @implementation QPFundHandler
 
++ (BOOL)setUserDefaultSourceFrom:(FundDataSource)sourceFrom {
+    [[NSUserDefaults standardUserDefaults] setInteger:sourceFrom forKey:USER_FUND_SOURCE_FROM];
+    return [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (BOOL)setUserDefaultSortType:(FundDataSortType)sortType {
+    [[NSUserDefaults standardUserDefaults] setInteger:sortType forKey:USER_FUND_SORT_TYPE];
+    return [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (FundDataSource)getUserDefaultSourceFrom {
+    FundDataSource sourceFrom = [[NSUserDefaults standardUserDefaults] integerForKey:USER_FUND_SOURCE_FROM];
+    if (!sourceFrom) {
+        sourceFrom = FromTianTian;
+    }
+    return sourceFrom;
+}
+
++ (FundDataSortType)getUserDefaultSortType {
+    FundDataSortType sortType = [[NSUserDefaults standardUserDefaults] integerForKey:USER_FUND_SORT_TYPE];
+    if (!sortType) {
+        sortType = SortByRiseDown;
+    }
+    return sortType;
+}
+
 + (NSString *)setFundSourceFrom:(FundDataSource)sourceFrom show:(BOOL)show {
     
     NSString *sourceStr = @"";

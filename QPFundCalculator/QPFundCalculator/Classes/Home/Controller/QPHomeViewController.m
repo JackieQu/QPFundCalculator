@@ -38,37 +38,9 @@
 }
 
 - (void)clickAction:(UIButton *)btn {
-    
-//    [self getServerAddress];
-//    [self getPublicKey];
 
     QPFundViewController *fundVC = [[QPFundViewController alloc] init];
     [self pushVC:fundVC];
 }
 
-/*
-- (void)getServerAddress {
-    
-    [[QPHTTPManager sharedManager] requestWithMethod:GET path:API_GET_URL params:nil prepare:^{
-        DLog(@"请求服务器地址");
-    } success:^(NSURLSessionTask * _Nonnull task, id  _Nullable responseObject) {
-        DLog(@"%@", responseObject);
-    } failure:^(NSURLSessionTask * _Nullable task, NSError * _Nonnull error) {
-        DLog(@"%@", error);
-    }];
-}
-
-- (void)getPublicKey {
-    
-    NSDictionary *params = @{@"method": @"pubkey"};
-    [[QPHTTPManager sharedManager] requestWithMethod:GET path:SERVER_PATH params:params prepare:^{
-        DLog(@"请求公钥信息");
-    } success:^(NSURLSessionTask * _Nonnull task, id  _Nullable responseObject) {
-        DLog(@"%@", responseObject);
-    } failure:^(NSURLSessionTask * _Nullable task, NSError * _Nonnull error) {
-        DLog(@"%@", error);
-    }];
-}
- */
- 
 @end

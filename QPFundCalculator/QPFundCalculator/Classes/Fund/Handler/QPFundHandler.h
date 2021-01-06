@@ -12,6 +12,10 @@
 #import "QPFundCellFrame.h"
 #import <MBProgressHUD.h>
 
+#define USER_FUND_DICT          @"USER_FUND_DICT"
+#define USER_FUND_SOURCE_FROM   @"USER_FUND_SOURCE_FROM"
+#define USER_FUND_SORT_TYPE     @"USER_FUND_SORT_TYPE"
+
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^CompanyListHandleSucBlock)(NSArray <QPFundCompanyModel *> *companys);
@@ -21,8 +25,13 @@ typedef void(^FundHandleFaiBlock)(NSString *errMsg);
 
 @interface QPFundHandler : NSObject
 
-+ (NSString *)setFundSourceFrom:(FundDataSource)sourceFrom show:(BOOL)show;
++ (BOOL)setUserDefaultSourceFrom:(FundDataSource)sourceFrom;
++ (BOOL)setUserDefaultSortType:(FundDataSortType)sortType;
 
++ (FundDataSource)getUserDefaultSourceFrom;
++ (FundDataSortType)getUserDefaultSortType;
+
++ (NSString *)setFundSourceFrom:(FundDataSource)sourceFrom show:(BOOL)show;
 + (NSString *)setFundSortType:(FundDataSortType)sortType show:(BOOL)show;
 
 + (NSMutableArray <QPFundCellFrame *> *)getSortFundDataListWithSortType:(FundDataSortType)sortType
