@@ -106,9 +106,28 @@
     [self initUI];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self updateDataAndUI];
+}
+
 - (void)initUI {
     self.view.backgroundColor = kColorSameRGBA(255, 0.9);
     [self.view addSubview:self.tableView];
+}
+
+- (void)updateDataAndUI {
+    
+    if ([self.view.subviews containsObject:self.tableView]) {
+    
+        FundDataSource sourceFrom = [QPFundHandler getUserDefaultSourceFrom];
+        self.dataList.firstObject.selectedOption = [QPOptionModel initWithID:sourceFrom type:OptionOfSourceFrom];
+        FundDataSortType sortType = [QPFundHandler getUserDefaultSortType];
+        self.dataList.lastObject.selectedOption = [QPOptionModel initWithID:sortType type:OptionOfSortType];
+        
+        [self.tableView reloadData];
+    }
 }
 
 #pragma mark - UITableViewDataSource & UITableViewDelegate
