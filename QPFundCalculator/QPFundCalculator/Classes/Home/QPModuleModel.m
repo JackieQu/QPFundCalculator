@@ -15,10 +15,7 @@
     if (!isNullStr(targetVCName)) {
         Class cls = NSClassFromString(targetVCName);
         if (cls && [cls isSubclassOfClass:[UIViewController class]]) {
-            UIViewController *vc = [[cls alloc] init];
-            if (vc && [vc isKindOfClass:[UIViewController class]]) {
-                self.targetVC = vc;
-            }
+            self.targetClass = cls;
         }
     }
 }

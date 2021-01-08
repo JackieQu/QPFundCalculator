@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface QPModuleModel : QPBaseModel
 
-@property (nonatomic, strong) UIViewController *targetVC;
+@property (nonatomic, strong) Class targetClass;
 @property (nonatomic, strong) NSString *targetVCName;
 @property (nonatomic, strong) NSString *imgName;
 @property (nonatomic, strong) NSString *title;

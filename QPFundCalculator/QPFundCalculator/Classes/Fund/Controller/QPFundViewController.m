@@ -10,6 +10,7 @@
 #import "QPFundTableView.h"
 #import "QPFundHandler.h"
 #import <MJRefresh.h>
+#import "NSDate+Format.h"
 
 @interface QPFundViewController ()
 
@@ -90,7 +91,7 @@
 - (void)initUI {
     self.title = @"基金收益估算";
     
-    UIBarButtonItem *item1 = [[UIBarButtonItem alloc] initWithTitle:@"=" style:UIBarButtonItemStyleDone target:self action:@selector(sumAction)];
+    UIBarButtonItem *item1 = [[UIBarButtonItem alloc] initWithTitle:@"=" style:UIBarButtonItemStyleDone target:self action:@selector(sumAction:)];
     UIBarButtonItem *item2 = [[UIBarButtonItem alloc] initWithTitle:@"+" style:UIBarButtonItemStyleDone target:self action:@selector(addAction)];
     UIBarButtonItem *item3 = [[UIBarButtonItem alloc] initWithTitle:@"T/X" style:UIBarButtonItemStyleDone target:self action:@selector(changeAction)];
     UIBarButtonItem *item4 = [[UIBarButtonItem alloc] initWithTitle:@"↑/↓" style:UIBarButtonItemStyleDone target:self action:@selector(sortAction)];
@@ -134,7 +135,7 @@
 }
 
 // 计算预估收益
-- (void)sumAction {
+- (void)sumAction:(UIBarButtonItem *)barBtnItem {
     CGFloat sum = 0, totalAmount = 0;
     for (QPFundCellFrame *cellFrame in self.fundDataList) {
         QPFundModel *fund = cellFrame.fund;
@@ -142,12 +143,27 @@
         totalAmount += fund.holdValue;
     }
     sum /= 100;
-    DLog(@"持有总额：￥%.2lf", totalAmount);
+    
+    #pragma mark - TODO
+    if ([NSDate isWeekDay]) {
+        NSMutableDictionary *dict = [[NSUserDefaults standardUserDefaults] objectForKey:USER_FUND_RISE_RECORD];
+        if (!dict || ![dict isKindOfClass:[NSMutableDictionary class]]) {
+            dict = [NSMutableDictionary dictionaryWithDictionary:dict];
+        }
+        NSString *todayStr = [NSDate dateStrOfToday];
+        [dict setValue:@(sum) forKey:[NSDate dateStrOfToday]];
+        [[NSUserDefaults standardUserDefaults] setObject:dict forKey:USER_FUND_RISE_RECORD];
+        [[NSUserDefaults standardUserDefaults] setFloat:sum forKey:USER_FUND_RISE_AMOUNT_TODAY];
+    }
+    [[NSUserDefaults standardUserDefaults] setFloat:totalAmount forKey:USER_FUND_HOLD_AMOUNT];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 
-    NSString *msg = [NSString stringWithFormat:@"￥%.2lf",sum];
-    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"预计收益" message:msg preferredStyle:UIAlertControllerStyleAlert];
-    [alertVC addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil]];
-    [self presentViewController:alertVC animated:YES completion:nil];
+    if (barBtnItem && [barBtnItem.title isEqualToString:@"="]) {
+        NSString *msg = [NSString stringWithFormat:@"￥%.2lf",sum];
+        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"预计收益" message:msg preferredStyle:UIAlertControllerStyleAlert];
+        [alertVC addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil]];
+        [self presentViewController:alertVC animated:YES completion:nil];
+    }
 }
 
 // 添加持有基金
@@ -289,8 +305,9 @@
 // 重设数据，刷新列表
 - (void)resetFundDataList {
     self.fundDataList = [QPFundHandler getSortFundDataListWithSortType:self.sortType originalDataList:self.fundDataList];
-    self.fundTableView.fundDataList = self.fundDataList;
+    [self sumAction:nil];
     
+    self.fundTableView.fundDataList = self.fundDataList;
     [self.fundTableView.mj_header endRefreshing];
     [self.fundTableView.mj_footer resetNoMoreData];
 }

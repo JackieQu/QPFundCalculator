@@ -10,6 +10,7 @@
 		2830454F2599BEA300FC53A9 /* NSString+Pinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830454E2599BEA300FC53A9 /* NSString+Pinyin.m */; };
 		283045552599D59800FC53A9 /* NSURL+Param.m in Sources */ = {isa = PBXBuildFile; fileRef = 283045542599D59800FC53A9 /* NSURL+Param.m */; };
 		2830456A259AC4E900FC53A9 /* QPFundTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28304569259AC4E900FC53A9 /* QPFundTableView.m */; };
+		28589EBB25A84E4C00EF3052 /* NSDate+Format.m in Sources */ = {isa = PBXBuildFile; fileRef = 28589EBA25A84E4C00EF3052 /* NSDate+Format.m */; };
 		28AAC9F325937BE3005534B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28AAC9F125937BE3005534B4 /* Main.storyboard */; };
 		28AAC9F625937BE3005534B4 /* QPFundCalculator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28AAC9F425937BE3005534B4 /* QPFundCalculator.xcdatamodeld */; };
 		28AAC9F825937BE8005534B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28AAC9F725937BE8005534B4 /* Assets.xcassets */; };
@@ -74,6 +75,8 @@
 		283045542599D59800FC53A9 /* NSURL+Param.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURL+Param.m"; sourceTree = "<group>"; };
 		28304568259AC4E900FC53A9 /* QPFundTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QPFundTableView.h; sourceTree = "<group>"; };
 		28304569259AC4E900FC53A9 /* QPFundTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QPFundTableView.m; sourceTree = "<group>"; };
+		28589EB925A84E4C00EF3052 /* NSDate+Format.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+Format.h"; sourceTree = "<group>"; };
+		28589EBA25A84E4C00EF3052 /* NSDate+Format.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Format.m"; sourceTree = "<group>"; };
 		28AAC9E525937BE3005534B4 /* QPFundCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QPFundCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28AAC9F225937BE3005534B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		28AAC9F525937BE3005534B4 /* QPFundCalculator.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QPFundCalculator.xcdatamodel; sourceTree = "<group>"; };
@@ -404,6 +407,8 @@
 				28AACA7425938A2F005534B4 /* NSData+Hex.m */,
 				2830454D2599BEA300FC53A9 /* NSString+Pinyin.h */,
 				2830454E2599BEA300FC53A9 /* NSString+Pinyin.m */,
+				28589EB925A84E4C00EF3052 /* NSDate+Format.h */,
+				28589EBA25A84E4C00EF3052 /* NSDate+Format.m */,
 				283045532599D59800FC53A9 /* NSURL+Param.h */,
 				283045542599D59800FC53A9 /* NSURL+Param.m */,
 				28AACA7525938A2F005534B4 /* QPCacheHelper.h */,
@@ -748,6 +753,7 @@
 				28AACAA625938B1E005534B4 /* QPHomeViewController.m in Sources */,
 				28AAC9F625937BE3005534B4 /* QPFundCalculator.xcdatamodeld in Sources */,
 				28AACAB825938CD3005534B4 /* QPFundModel.m in Sources */,
+				28589EBB25A84E4C00EF3052 /* NSDate+Format.m in Sources */,
 				28AACAB925938CD3005534B4 /* QPFundCellFrame.m in Sources */,
 				28E3FFB925A6F9E70063415D /* QPModuleModel.m in Sources */,
 				28AACAA025938B14005534B4 /* QPProfileViewController.m in Sources */,

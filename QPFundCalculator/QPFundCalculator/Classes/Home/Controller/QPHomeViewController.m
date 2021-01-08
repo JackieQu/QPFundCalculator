@@ -7,8 +7,10 @@
 
 #import "QPHomeViewController.h"
 #import "QPModuleCell.h"
+#import "NSDate+Format.h"
+#import "QPFundHandler.h"
 
-@interface QPHomeViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface QPHomeViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) UIButton *btn;
 
@@ -30,7 +32,7 @@
         layout.minimumInteritemSpacing = SCALE(MARGIN);
         layout.sectionInset = UIEdgeInsetsMake(SCALE(MARGIN), SCALE(MARGIN), SCALE(MARGIN), SCALE(MARGIN));
         layout.scrollDirection = UICollectionViewScrollPositionCenteredVertically;
-        layout.headerReferenceSize = CGSizeMake(0, 100);
+        layout.headerReferenceSize = CGSizeMake(SCREEN_WIDTH * 9 / 16, SCREEN_WIDTH);
         
         CGRect frame = CGRectMake(0, 0, SCREEN_WIDTH, CONTENT_HEIGHT);
         _collectionView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:layout];
@@ -38,6 +40,7 @@
         _collectionView.dataSource = self;
         _collectionView.backgroundColor = kWhiteColor;
         [_collectionView registerClass:[QPModuleCell class] forCellWithReuseIdentifier:@"cellID"];
+        [_collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerViewID"];
     }
     return _collectionView;
 }
@@ -79,10 +82,38 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     
+    #pragma mark - TODO
+    CGFloat value = 0;
+    NSString *weekStr = [NSDate completeWeekStrOfToday];
+    if (![weekStr isEqualToString:@"Sunday"] && ![weekStr isEqualToString:@"Monday"]) {
+        NSDictionary *dict = [[NSUserDefaults standardUserDefaults] objectForKey:USER_FUND_RISE_RECORD];
+        [[dict valueForKey:[NSDate dateStrOfToday]] floatValue];
+    }
+    DLog(@"%.2f", value);
+
     QPModuleModel *module = self.dataList[indexPath.row];
-    if (module.targetVC) {
-        [self pushVC:module.targetVC];
+    if (module.targetClass) {
+        UIViewController *targetVC = [[module.targetClass alloc] init];
+        [self pushVC:targetVC];
     }
 }
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    
+    if (kind == UICollectionElementKindSectionHeader) {
+        UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"headerViewID" forIndexPath:indexPath];
+        headerView.backgroundColor = kCyanColor;
+        return headerView;
+    }
+    return nil;
+}
+
+//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
+//
+//    if (section == 0) {
+//        return CGSizeMake(SCREEN_WIDTH * 9 / 16, SCREEN_WIDTH);
+//    }
+//    return CGSizeZero;
+//}
 
 @end
