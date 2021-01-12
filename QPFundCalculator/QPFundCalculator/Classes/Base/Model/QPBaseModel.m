@@ -38,9 +38,9 @@
 + (NSDictionary *)mj_replacedKeyFromPropertyName {
     
     return @{
-        @"ID"       : @"id",
-        @"desc"     : @"description",
-        @"isNew"    : @"new",
+        @"ID"       : @[@"ID", @"id"],
+        @"desc"     : @[@"desc", @"description"],
+        @"isNew"    : @[@"isNew", @"new"],
     };
 }
 

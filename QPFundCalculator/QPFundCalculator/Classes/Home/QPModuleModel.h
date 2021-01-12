@@ -12,10 +12,13 @@ NS_ASSUME_NONNULL_BEGIN
 @interface QPModuleModel : QPBaseModel
 
 @property (nonatomic, strong) Class targetClass;
+
 @property (nonatomic, strong) NSString *targetVCName;
 @property (nonatomic, strong) NSString *imgName;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *desc;
+
+@property (nonatomic, assign) BOOL isSecret;
 
 @property (nonatomic, assign) NSInteger ID;
 @property (nonatomic, assign) NSInteger index;

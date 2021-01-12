@@ -6,7 +6,6 @@
 //
 
 #import "QPHTTPManager.h"
-#import <AFNetworking.h>
 #import "QPAPIConfig.h"
 #import "NSURL+Param.h"
 

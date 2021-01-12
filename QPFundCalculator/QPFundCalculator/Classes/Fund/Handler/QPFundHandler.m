@@ -6,10 +6,29 @@
 //
 
 #import "QPFundHandler.h"
+#import "NSDate+Format.h"
 
 static NSString * kErrMsg = @"请求失败，请稍后再试...";
 
 @implementation QPFundHandler
+
++ (BOOL)setUserDefaultFundDict:(NSMutableDictionary *)fundDict {
+    [[NSUserDefaults standardUserDefaults] setObject:fundDict forKey:USER_FUND_DICT];
+    return [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (BOOL)setUserDefaultAmount:(CGFloat)amount rise:(CGFloat)rise {
+    if ([NSDate isWeekDay]) {
+        NSMutableDictionary *dict = [[NSUserDefaults standardUserDefaults] objectForKey:USER_FUND_RISE_RECORD];
+        if (!dict || ![dict isKindOfClass:[NSMutableDictionary class]]) {
+            dict = [NSMutableDictionary dictionaryWithDictionary:dict];
+        }
+        [dict setValue:@(rise) forKey:[NSDate dateStrOfToday]];
+        [[NSUserDefaults standardUserDefaults] setObject:dict forKey:USER_FUND_RISE_RECORD];
+    }
+    [[NSUserDefaults standardUserDefaults] setFloat:amount forKey:USER_FUND_HOLD_AMOUNT];
+    return [[NSUserDefaults standardUserDefaults] synchronize];;
+}
 
 + (BOOL)setUserDefaultSourceFrom:(FundDataSource)sourceFrom {
     [[NSUserDefaults standardUserDefaults] setInteger:sourceFrom forKey:USER_FUND_SOURCE_FROM];
@@ -19,6 +38,42 @@ static NSString * kErrMsg = @"请求失败，请稍后再试...";
 + (BOOL)setUserDefaultSortType:(FundDataSortType)sortType {
     [[NSUserDefaults standardUserDefaults] setInteger:sortType forKey:USER_FUND_SORT_TYPE];
     return [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (NSMutableDictionary *)getUserDefaultFundDict {
+    NSMutableDictionary *dict = [[NSUserDefaults standardUserDefaults] objectForKey:USER_FUND_DICT];
+    if (![dict isKindOfClass:[NSMutableDictionary class]]) {
+        dict = [NSMutableDictionary dictionaryWithDictionary:dict];
+    }
+    if (!dict) {
+        dict = [NSMutableDictionary dictionary];
+    }
+    return dict;
+}
+
++ (NSDictionary *)getUserDefaultAmountAndRise {
+    CGFloat riseOfYesterday = 0, riseOfToday = 0, holdAmount = 0;
+    holdAmount = [[NSUserDefaults standardUserDefaults] floatForKey:USER_FUND_HOLD_AMOUNT];
+    NSDictionary *dict = [[NSUserDefaults standardUserDefaults] objectForKey:USER_FUND_RISE_RECORD];
+    riseOfYesterday = [[dict valueForKey:[NSDate dateStrOfYesterday]] floatValue];
+    riseOfToday = [[dict valueForKey:[NSDate dateStrOfToday]] floatValue];
+    NSString *weekStr = [NSDate completeWeekStrOfToday];
+    // 若当天为周日、周一，则昨日收益置空，避免接口缓存获取到数据
+    if ([weekStr isEqualToString:SUNDAY] || [weekStr isEqualToString:MONDAY]) {
+        riseOfYesterday = 0;
+    }
+    // 若当天为周末，则今日收益置空
+    if ([NSDate isWeekEnd]) {
+        riseOfToday = 0;
+    }
+    NSString *riseStrOfToday = [NSString stringWithFormat:@"¥%.2f", riseOfToday];
+    NSString *riseStrOfYesterday = [NSString stringWithFormat:@"¥%.2f", riseOfYesterday];
+    NSString *holdAmountStr = [NSString stringWithFormat:@"¥%.2f", holdAmount];
+    return @{
+        USER_FUND_RISE_AMOUNT_TODAY     : riseStrOfToday,
+        USER_FUND_RISE_AMOUNT_YESTERDAY : riseStrOfYesterday,
+        USER_FUND_HOLD_AMOUNT           : holdAmountStr,
+    };
 }
 
 + (FundDataSource)getUserDefaultSourceFrom {
@@ -37,7 +92,7 @@ static NSString * kErrMsg = @"请求失败，请稍后再试...";
     return sortType;
 }
 
-+ (NSString *)setFundSourceFrom:(FundDataSource)sourceFrom show:(BOOL)show {
++ (NSString *)showFundSourceFrom:(FundDataSource)sourceFrom debug:(BOOL)debug {
     
     NSString *sourceStr = @"";
     switch (sourceFrom) {
@@ -50,13 +105,13 @@ static NSString * kErrMsg = @"请求失败，请稍后再试...";
         default:
             break;
     }
-    if (show) {
+    if (debug) {
         DLog(@"接口数据来自%@", sourceStr);
     }
     return sourceStr;
 }
 
-+ (NSString *)setFundSortType:(FundDataSortType)sortType show:(BOOL)show {
++ (NSString *)showFundSortType:(FundDataSortType)sortType debug:(BOOL)debug {
     
     NSString *typeStr = @"";
     switch (sortType) {
@@ -99,7 +154,7 @@ static NSString * kErrMsg = @"请求失败，请稍后再试...";
         default:
             break;
     }
-    if (show) {
+    if (debug) {
         DLog(@"按%@排序", typeStr);
     }
     return typeStr;
@@ -166,14 +221,14 @@ static NSString * kErrMsg = @"请求失败，请稍后再试...";
                 if (sucBlock) { sucBlock(company.op); }
             } else {
                 DLog(@"%@", err);
-                if (faiBlock) { faiBlock(kErrMsg); }
+                if (faiBlock) { faiBlock(kErrMsg, err); }
             }
         } else {
-            if (faiBlock) { faiBlock(kErrMsg); }
+            if (faiBlock) { faiBlock(kErrMsg, [NSError errorWithDomain:@"数据格式变更" code:10001 userInfo:nil]); }
         }
     } failure:^(NSURLSessionTask * _Nullable task, NSError * _Nonnull error) {
         DLog(@"%@", error);
-        if (faiBlock) { faiBlock(kErrMsg); }
+        if (faiBlock) { faiBlock(kErrMsg, error); }
     }];
 }
 
@@ -189,11 +244,11 @@ static NSString * kErrMsg = @"请求失败，请稍后再试...";
                 sucBlock(fundList);
             }
         } else {
-            if (faiBlock) { faiBlock(fundList.errMsg); }
+            if (faiBlock) { faiBlock(fundList.errMsg, [NSError errorWithDomain:@"数据格式变更" code:10001 userInfo:nil]); }
         }
     } failure:^(NSURLSessionTask * _Nullable task, NSError * _Nonnull error) {
         DLog(@"%@", error);
-        if (faiBlock) { faiBlock(kErrMsg); }
+        if (faiBlock) { faiBlock(kErrMsg, error); }
     }];
 }
 
@@ -219,14 +274,14 @@ static NSString * kErrMsg = @"请求失败，请稍后再试...";
                 if (sucBlock) { sucBlock(fund); }
             } else {
                 DLog(@"%@", err);
-                if (faiBlock) { faiBlock(kErrMsg); }
+                if (faiBlock) { faiBlock(kErrMsg, err); }
             }
         } else {
-            if (faiBlock) { faiBlock(kErrMsg); }
+            if (faiBlock) { faiBlock(kErrMsg, [NSError errorWithDomain:@"数据格式变更" code:10001 userInfo:nil]); }
         }
     } failure:^(NSURLSessionTask * _Nullable task, NSError * _Nonnull error) {
         DLog(@"%@", error);
-        if (faiBlock) { faiBlock(kErrMsg); }
+        if (faiBlock) { faiBlock(kErrMsg, error); }
     }];
 }
 
@@ -247,11 +302,11 @@ static NSString * kErrMsg = @"请求失败，请稍后再试...";
                 sucBlock(fundList);
             }
         } else {
-            if (faiBlock) { faiBlock(fundList.message); }
+            if (faiBlock) { faiBlock(fundList.message, [NSError errorWithDomain:@"数据格式变更" code:10001 userInfo:nil]); }
         }
     } failure:^(NSURLSessionTask * _Nullable task, NSError * _Nonnull error) {
         [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].windows.firstObject animated:YES];
-        if (faiBlock) { faiBlock(kErrMsg); }
+        if (faiBlock) { faiBlock(kErrMsg, error); }
     }];
 }
 

@@ -50,10 +50,10 @@
     NSString *title = @"";
     switch (type) {
         case OptionOfSourceFrom:
-            title = [QPFundHandler setFundSourceFrom:ID show:NO];
+            title = [QPFundHandler showFundSourceFrom:ID debug:NO];
             break;
         case OptionOfSortType:
-            title = [QPFundHandler setFundSortType:ID show:NO];
+            title = [QPFundHandler showFundSortType:ID debug:NO];
             break;
         default:
             break;

@@ -42,7 +42,7 @@
                                                     green:(g) / 255.0f \
                                                     blue:(b) / 255.0f \
                                                     alpha:(a)]
-#define kColorRGB(r,g,b)            kColorRGBA(r,g,b,1);
+#define kColorRGB(r,g,b)            kColorRGBA(r,g,b,1)
 #define kColorSameRGBA(value,a)     kColorRGBA(value,value,value,a)
 #define kColorSameRGB(value)        kColorRGBA(value,value,value,1)
 #define kColorWhiteAndAlpha(w,a)    [UIColor colorWithWhite:w alpha:a]

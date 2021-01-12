@@ -123,8 +123,14 @@
     
         FundDataSource sourceFrom = [QPFundHandler getUserDefaultSourceFrom];
         self.dataList.firstObject.selectedOption = [QPOptionModel initWithID:sourceFrom type:OptionOfSourceFrom];
+        for (QPOptionModel *option in self.optionArrOfSourceFrom) {
+            option.isSelected = option.ID == sourceFrom;
+        }
         FundDataSortType sortType = [QPFundHandler getUserDefaultSortType];
         self.dataList.lastObject.selectedOption = [QPOptionModel initWithID:sortType type:OptionOfSortType];
+        for (QPOptionModel *option in self.optionArrOfSortType) {
+            option.isSelected = option.ID == sortType;
+        }
         
         [self.tableView reloadData];
     }

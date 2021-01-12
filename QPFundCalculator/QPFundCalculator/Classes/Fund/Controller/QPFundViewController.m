@@ -10,7 +10,6 @@
 #import "QPFundTableView.h"
 #import "QPFundHandler.h"
 #import <MJRefresh.h>
-#import "NSDate+Format.h"
 
 @interface QPFundViewController ()
 
@@ -57,25 +56,19 @@
 
 - (NSMutableDictionary *)userFundDict {
     if (!_userFundDict) {
-        _userFundDict = [[NSUserDefaults standardUserDefaults] objectForKey:USER_FUND_DICT];
-        if (![_userFundDict isKindOfClass:[NSMutableDictionary class]]) {
-            _userFundDict = [NSMutableDictionary dictionaryWithDictionary:_userFundDict];
-        }
-        if (!_userFundDict) {
-            _userFundDict = [NSMutableDictionary dictionary];
-        }
+        _userFundDict = [QPFundHandler getUserDefaultFundDict];
     }
     return _userFundDict;
 }
 
 - (void)setSourceFrom:(FundDataSource)sourceFrom {
     _sourceFrom = sourceFrom;
-    [QPFundHandler setFundSourceFrom:sourceFrom show:YES];
+    [QPFundHandler showFundSourceFrom:sourceFrom debug:YES];
 }
 
 - (void)setSortType:(FundDataSortType)sortType {
     _sortType = sortType;
-    [QPFundHandler setFundSortType:sortType show:YES];
+    [QPFundHandler showFundSortType:sortType debug:YES];
 }
 
 - (void)viewDidLoad {
@@ -86,6 +79,12 @@
     
     [self initUI];
     [self.fundTableView.mj_header beginRefreshing];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [self.view endEditing:YES];
 }
 
 - (void)initUI {
@@ -129,9 +128,9 @@
     } else {
         [self.userFundDict removeObjectForKey:code];
     }
-
-    [[NSUserDefaults standardUserDefaults] setObject:self.userFundDict forKey:USER_FUND_DICT];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [QPFundHandler setUserDefaultFundDict:self.userFundDict];
+    
+    [self sumAction:nil];
 }
 
 // 计算预估收益
@@ -143,21 +142,8 @@
         totalAmount += fund.holdValue;
     }
     sum /= 100;
+    [QPFundHandler setUserDefaultAmount:totalAmount rise:sum];
     
-    #pragma mark - TODO
-    if ([NSDate isWeekDay]) {
-        NSMutableDictionary *dict = [[NSUserDefaults standardUserDefaults] objectForKey:USER_FUND_RISE_RECORD];
-        if (!dict || ![dict isKindOfClass:[NSMutableDictionary class]]) {
-            dict = [NSMutableDictionary dictionaryWithDictionary:dict];
-        }
-        NSString *todayStr = [NSDate dateStrOfToday];
-        [dict setValue:@(sum) forKey:[NSDate dateStrOfToday]];
-        [[NSUserDefaults standardUserDefaults] setObject:dict forKey:USER_FUND_RISE_RECORD];
-        [[NSUserDefaults standardUserDefaults] setFloat:sum forKey:USER_FUND_RISE_AMOUNT_TODAY];
-    }
-    [[NSUserDefaults standardUserDefaults] setFloat:totalAmount forKey:USER_FUND_HOLD_AMOUNT];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-
     if (barBtnItem && [barBtnItem.title isEqualToString:@"="]) {
         NSString *msg = [NSString stringWithFormat:@"￥%.2lf",sum];
         UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"预计收益" message:msg preferredStyle:UIAlertControllerStyleAlert];
@@ -194,16 +180,20 @@
         self.sourceFrom = FromTianTian;
     }
     [QPFundHandler setUserDefaultSourceFrom:self.sourceFrom];
+    
     [self loadData];
 }
 
 // 变更排序类型
 - (void)sortAction {
-    self.sortType += 1;
-    if (self.sortType > SortByNameDown) {
-        self.sortType = SortByRiseUp;
+    NSInteger type = self.sortType;
+    type += 1;
+    if (type > SortByNameDown) {
+        type = SortByRiseUp;
     }
+    self.sortType = type;
     [QPFundHandler setUserDefaultSortType:self.sortType];
+    
     self.fundDataList = [QPFundHandler getSortFundDataListWithSortType:self.sortType originalDataList:self.fundDataList];
     self.fundTableView.fundDataList = self.fundDataList;
 }
@@ -251,8 +241,14 @@
         [QPFundHandler handleFundDetailWithCode:code sucBlock:^(QPFundModel * _Nonnull fund) {
             [self addFundModel:fund];
             dispatch_group_leave(group);
-        } faiBlock:^(NSString * _Nonnull errMsg) {
+        } faiBlock:^(NSString * _Nonnull errMsg, NSError * _Nonnull err) {
             DLog(@"%@", errMsg);
+            // 若基金代码错误，则移除此项
+            NSHTTPURLResponse *response = [err.userInfo valueForKey:AFNetworkingOperationFailingURLResponseErrorKey];
+            if (response.statusCode == 404) {
+                [self.userFundDict removeObjectForKey:code];
+                [QPFundHandler setUserDefaultFundDict:self.userFundDict];
+            }
             dispatch_group_leave(group);
         }];
     }
@@ -271,7 +267,7 @@
             [self addFundModel:fund];
         }
         [self resetFundDataList];
-    } faiBlock:^(NSString * _Nonnull errMsg) {
+    } faiBlock:^(NSString * _Nonnull errMsg, NSError * _Nonnull err) {
         DLog(@"%@", errMsg);
     }];
 }
@@ -306,7 +302,7 @@
 - (void)resetFundDataList {
     self.fundDataList = [QPFundHandler getSortFundDataListWithSortType:self.sortType originalDataList:self.fundDataList];
     [self sumAction:nil];
-    
+
     self.fundTableView.fundDataList = self.fundDataList;
     [self.fundTableView.mj_header endRefreshing];
     [self.fundTableView.mj_footer resetNoMoreData];

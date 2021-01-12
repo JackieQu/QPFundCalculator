@@ -18,6 +18,9 @@ static NSString *Y       = @"yyyy";
 static NSString *EEEE    = @"EEEE";
 static NSString *E       = @"E";
 
+static NSString *SUNDAY  = @"Sunday";
+static NSString *MONDAY  = @"Monday";
+
 @interface NSDate (Format)
 
 + (NSString *)dateStrOfYesterday;
