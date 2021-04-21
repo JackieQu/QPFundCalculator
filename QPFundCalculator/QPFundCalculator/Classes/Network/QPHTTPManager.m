@@ -13,6 +13,8 @@
 
 @property (nonatomic, strong) AFHTTPSessionManager *manager;
 
+@property (nonatomic, strong) UIAlertController *alertVC;
+
 @end
 
 @implementation QPHTTPManager
@@ -31,6 +33,15 @@
             break;
     }
     self.manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"application/javascript", @"application/x-javascript",  @"text/json", @"text/javascript", @"text/html", @"text/plain", @"image/gif", @"image/jpg", @"image/png", nil];
+}
+
+- (UIAlertController *)alertVC {
+    if (!_alertVC) {
+        _alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:@"网络连接异常，请检查网络连接" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+        [_alertVC addAction:action];
+    }
+    return _alertVC;
 }
 
 - (instancetype)init
@@ -94,6 +105,11 @@
 
 - (void)requestWithMethod:(HTTPRequestMethod)method path:(NSString *)path params:(NSDictionary *)params prepare:(PrepareBlock)prepare success:(SuccessBlock)success failure:(FailureBlock)failure {
     
+    [self requestWithMethod:method path:path params:params prepare:prepare success:success failure:failure noAlert:NO];
+}
+
+- (void)requestWithMethod:(HTTPRequestMethod)method path:(NSString *)path params:(NSDictionary *)params prepare:(PrepareBlock)prepare success:(SuccessBlock)success failure:(FailureBlock)failure noAlert:(BOOL)noAlert {
+    
     if (self.isReachable) {
         
         self.responseType = JSON;
@@ -131,14 +147,20 @@
         
     } else {
         
-        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:@"网络连接异常，请检查网络连接" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *action = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
-        [alertVC addAction:action];
-        [[[[UIApplication sharedApplication] windows].firstObject rootViewController] presentViewController:alertVC animated:YES completion:^{
-            if (failure) {
-                failure(nil, [NSError errorWithDomain:@"isNotReachable" code:1000 userInfo:nil]);
+        if (failure) {
+            NSError *error = [NSError errorWithDomain:@"isNotReachable" code:1000 userInfo:nil];
+            UIViewController *rootVC = [[[UIApplication sharedApplication] windows].firstObject rootViewController];
+            if (noAlert ||
+                ![[NSThread currentThread] isMainThread] ||
+                rootVC.presentedViewController) {
+                failure(nil, error);
+                return;
             }
-        }];
+            
+            [rootVC presentViewController:self.alertVC animated:YES completion:^{
+                failure(nil, error);
+            }];
+        }
     }
 }
 

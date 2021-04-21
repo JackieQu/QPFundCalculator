@@ -21,12 +21,11 @@
 
 @implementation QPHomeViewController
 
-#pragma mark - TODO
 - (UIButton *)btn {
     if (!_btn) {
         _btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _btn.frame = CGRectMake(0, 0, SCALE(100), SCALE(40));
-        _btn.backgroundColor = kMainColor;
+        _btn.frame = CGRectMake(0, 0, SCALE(60), SCALE(44));
+//        _btn.backgroundColor = kWhiteColor;
         _btn.layer.cornerRadius = SCALE(10);
         _btn.layer.masksToBounds = YES;
         _btn.clipsToBounds = YES;
@@ -92,7 +91,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.btn];
+
     [self.view addSubview:self.collectionView];
+    
+    DLog(@"%f", STATUS_BAR_HEIGHT);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -142,8 +145,8 @@
     if (kind == UICollectionElementKindSectionHeader) {
         UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"headerViewID" forIndexPath:indexPath];
         headerView.backgroundColor = kColorRGB(34, 123, 251);
-        self.btn.center = headerView.center;
-        [headerView addSubview:self.btn];
+//        self.btn.center = headerView.center;
+//        [headerView addSubview:self.btn];
         return headerView;
     }
     return nil;

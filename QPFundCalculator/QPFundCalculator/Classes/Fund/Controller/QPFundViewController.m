@@ -25,7 +25,7 @@
 
 - (QPFundTableView *)fundTableView {
     if (!_fundTableView) {
-        CGRect frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - STATUS_NAV_HEIGHT);
+        CGRect frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - STATUS_NAV_HEIGHT - SAFE_MARGIN_BOTTOM);
         _fundTableView = [[QPFundTableView alloc] initWithFrame:frame style:UITableViewStylePlain];
         _fundTableView.fundDataList = self.fundDataList;
         __weak typeof(self) weakSelf = self;
@@ -231,6 +231,9 @@
 
 // 天天基金接口逻辑
 - (void)getTFundDetailWithCode:(NSString *)code {
+    
+    __block BOOL haveError = NO;
+    
     [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].windows.firstObject animated:YES];
     dispatch_group_t group = dispatch_group_create();
     dispatch_queue_t queue = dispatch_get_global_queue(0, 0);
@@ -248,6 +251,8 @@
             if (response.statusCode == 404) {
                 [self.userFundDict removeObjectForKey:code];
                 [QPFundHandler setUserDefaultFundDict:self.userFundDict];
+            } else {
+                haveError = YES;
             }
             dispatch_group_leave(group);
         }];
@@ -255,7 +260,11 @@
     dispatch_group_notify(group, queue, ^{
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].windows.firstObject animated:YES];
-            [self resetFundDataList];
+            if (haveError) {
+                [self showErrorAlert];
+            } else {
+                [self resetFundDataList];
+            }
         });
     });
 }
@@ -269,6 +278,16 @@
         [self resetFundDataList];
     } faiBlock:^(NSString * _Nonnull errMsg, NSError * _Nonnull err) {
         DLog(@"%@", errMsg);
+    }];
+}
+
+- (void)showErrorAlert {
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:@"接口有问题了，稍后再试" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+    [alertVC addAction:action];
+    [self presentViewController:alertVC animated:YES completion:^{
+        [self.fundTableView.mj_header endRefreshing];
+        [self.fundTableView.mj_footer resetNoMoreData];
     }];
 }
 

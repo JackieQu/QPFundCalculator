@@ -282,7 +282,7 @@ static NSString * kErrMsg = @"请求失败，请稍后再试...";
     } failure:^(NSURLSessionTask * _Nullable task, NSError * _Nonnull error) {
         DLog(@"%@", error);
         if (faiBlock) { faiBlock(kErrMsg, error); }
-    }];
+    } noAlert:YES];
 }
 
 #pragma mark - 小熊同学

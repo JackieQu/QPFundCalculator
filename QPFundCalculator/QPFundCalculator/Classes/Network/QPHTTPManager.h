@@ -47,6 +47,14 @@ typedef void(^FailureBlock)(NSURLSessionTask * _Nullable task, NSError *error);
                   success:(SuccessBlock)success
                   failure:(FailureBlock)failure;
 
+- (void)requestWithMethod:(HTTPRequestMethod)method
+                     path:(NSString *)path
+                   params:(NSDictionary * _Nullable)params
+                  prepare:(PrepareBlock)prepare
+                  success:(SuccessBlock)success
+                  failure:(FailureBlock)failure
+                  noAlert:(BOOL)noAlert;
+
 @end
 
 NS_ASSUME_NONNULL_END

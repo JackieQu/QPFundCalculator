@@ -3,9 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>defaultIndex</key>
-	<integer>0</integer>
+	<integer>1</integer>
 	<key>vcList</key>
 	<array>
+		<dict>
+			<key>show</key>
+			<true/>
+			<key>vcName</key>
+			<string>QPTestViewController</string>
+			<key>vcTitle</key>
+			<string>测试</string>
+		</dict>
 		<dict>
 			<key>show</key>
 			<true/>

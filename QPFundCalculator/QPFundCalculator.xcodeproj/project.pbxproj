@@ -11,6 +11,12 @@
 		283045552599D59800FC53A9 /* NSURL+Param.m in Sources */ = {isa = PBXBuildFile; fileRef = 283045542599D59800FC53A9 /* NSURL+Param.m */; };
 		2830456A259AC4E900FC53A9 /* QPFundTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28304569259AC4E900FC53A9 /* QPFundTableView.m */; };
 		28589EBB25A84E4C00EF3052 /* NSDate+Format.m in Sources */ = {isa = PBXBuildFile; fileRef = 28589EBA25A84E4C00EF3052 /* NSDate+Format.m */; };
+		2875375C26282A5500221E05 /* QPNodeList.m in Sources */ = {isa = PBXBuildFile; fileRef = 2875375B26282A5500221E05 /* QPNodeList.m */; };
+		287537622630725300221E05 /* QPTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 287537612630725300221E05 /* QPTestViewController.m */; };
+		287C225825AF4FBA00760B9A /* QPModuleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 287C225625AF4FBA00760B9A /* QPModuleModel.m */; };
+		287C225E25AF4FD700760B9A /* QPModuleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 287C225D25AF4FD700760B9A /* QPModuleCell.m */; };
+		287C226425AF4FF100760B9A /* QPOptionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 287C226225AF4FF100760B9A /* QPOptionModel.m */; };
+		287C226A25AF4FF800760B9A /* QPOptionMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 287C226925AF4FF800760B9A /* QPOptionMaskView.m */; };
 		28AAC9F325937BE3005534B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28AAC9F125937BE3005534B4 /* Main.storyboard */; };
 		28AAC9F625937BE3005534B4 /* QPFundCalculator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28AAC9F425937BE3005534B4 /* QPFundCalculator.xcdatamodeld */; };
 		28AAC9F825937BE8005534B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28AAC9F725937BE8005534B4 /* Assets.xcassets */; };
@@ -37,10 +43,6 @@
 		28AACAB825938CD3005534B4 /* QPFundModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AACAB425938CD3005534B4 /* QPFundModel.m */; };
 		28AACAB925938CD3005534B4 /* QPFundCellFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AACAB525938CD3005534B4 /* QPFundCellFrame.m */; };
 		28AACABF25938CDA005534B4 /* QPFundCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AACABE25938CDA005534B4 /* QPFundCell.m */; };
-		28E3FF9A25A467EB0063415D /* QPOptionMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E3FF9925A467EB0063415D /* QPOptionMaskView.m */; };
-		28E3FFA325A46F1A0063415D /* QPOptionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E3FFA225A46F1A0063415D /* QPOptionModel.m */; };
-		28E3FFB325A6F6AB0063415D /* QPModuleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E3FFB225A6F6AB0063415D /* QPModuleCell.m */; };
-		28E3FFB925A6F9E70063415D /* QPModuleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E3FFB825A6F9E70063415D /* QPModuleModel.m */; };
 		28E56BA3259488D60000CF08 /* QPFundCompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E56BA2259488D60000CF08 /* QPFundCompanyModel.m */; };
 		28E56BAA2595874C0000CF08 /* QPFundListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E56BA92595874C0000CF08 /* QPFundListModel.m */; };
 		28E56BB125958EDD0000CF08 /* QPFundHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E56BB025958EDD0000CF08 /* QPFundHandler.m */; };
@@ -77,6 +79,18 @@
 		28304569259AC4E900FC53A9 /* QPFundTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QPFundTableView.m; sourceTree = "<group>"; };
 		28589EB925A84E4C00EF3052 /* NSDate+Format.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+Format.h"; sourceTree = "<group>"; };
 		28589EBA25A84E4C00EF3052 /* NSDate+Format.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Format.m"; sourceTree = "<group>"; };
+		2875375A26282A5500221E05 /* QPNodeList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QPNodeList.h; sourceTree = "<group>"; };
+		2875375B26282A5500221E05 /* QPNodeList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QPNodeList.m; sourceTree = "<group>"; };
+		287537602630725300221E05 /* QPTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QPTestViewController.h; sourceTree = "<group>"; };
+		287537612630725300221E05 /* QPTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QPTestViewController.m; sourceTree = "<group>"; };
+		287C225625AF4FBA00760B9A /* QPModuleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QPModuleModel.m; sourceTree = "<group>"; };
+		287C225725AF4FBA00760B9A /* QPModuleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QPModuleModel.h; sourceTree = "<group>"; };
+		287C225C25AF4FD600760B9A /* QPModuleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QPModuleCell.h; sourceTree = "<group>"; };
+		287C225D25AF4FD700760B9A /* QPModuleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QPModuleCell.m; sourceTree = "<group>"; };
+		287C226225AF4FF100760B9A /* QPOptionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QPOptionModel.m; sourceTree = "<group>"; };
+		287C226325AF4FF100760B9A /* QPOptionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QPOptionModel.h; sourceTree = "<group>"; };
+		287C226825AF4FF800760B9A /* QPOptionMaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QPOptionMaskView.h; sourceTree = "<group>"; };
+		287C226925AF4FF800760B9A /* QPOptionMaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QPOptionMaskView.m; sourceTree = "<group>"; };
 		28AAC9E525937BE3005534B4 /* QPFundCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QPFundCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28AAC9F225937BE3005534B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		28AAC9F525937BE3005534B4 /* QPFundCalculator.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QPFundCalculator.xcdatamodel; sourceTree = "<group>"; };
@@ -130,14 +144,6 @@
 		28AACAB725938CD3005534B4 /* QPFundModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QPFundModel.h; sourceTree = "<group>"; };
 		28AACABD25938CDA005534B4 /* QPFundCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QPFundCell.h; sourceTree = "<group>"; };
 		28AACABE25938CDA005534B4 /* QPFundCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QPFundCell.m; sourceTree = "<group>"; };
-		28E3FF9825A467EB0063415D /* QPOptionMaskView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QPOptionMaskView.h; path = QPFundCalculator/Classes/Home/QPOptionMaskView.h; sourceTree = SOURCE_ROOT; };
-		28E3FF9925A467EB0063415D /* QPOptionMaskView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = QPOptionMaskView.m; path = QPFundCalculator/Classes/Home/QPOptionMaskView.m; sourceTree = SOURCE_ROOT; };
-		28E3FFA125A46F1A0063415D /* QPOptionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QPOptionModel.h; path = QPFundCalculator/Classes/Home/QPOptionModel.h; sourceTree = SOURCE_ROOT; };
-		28E3FFA225A46F1A0063415D /* QPOptionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = QPOptionModel.m; path = QPFundCalculator/Classes/Home/QPOptionModel.m; sourceTree = SOURCE_ROOT; };
-		28E3FFB125A6F6AB0063415D /* QPModuleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QPModuleCell.h; path = QPFundCalculator/Classes/Home/QPModuleCell.h; sourceTree = SOURCE_ROOT; };
-		28E3FFB225A6F6AB0063415D /* QPModuleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = QPModuleCell.m; path = QPFundCalculator/Classes/Home/QPModuleCell.m; sourceTree = SOURCE_ROOT; };
-		28E3FFB725A6F9E70063415D /* QPModuleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QPModuleModel.h; path = QPFundCalculator/Classes/Home/QPModuleModel.h; sourceTree = SOURCE_ROOT; };
-		28E3FFB825A6F9E70063415D /* QPModuleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = QPModuleModel.m; path = QPFundCalculator/Classes/Home/QPModuleModel.m; sourceTree = SOURCE_ROOT; };
 		28E56BA1259488D60000CF08 /* QPFundCompanyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QPFundCompanyModel.h; sourceTree = "<group>"; };
 		28E56BA2259488D60000CF08 /* QPFundCompanyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QPFundCompanyModel.m; sourceTree = "<group>"; };
 		28E56BA82595874C0000CF08 /* QPFundListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QPFundListModel.h; sourceTree = "<group>"; };
@@ -181,6 +187,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		28753766263072C500221E05 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				28753767263072C500221E05 /* Controller */,
+				28753768263072C500221E05 /* Model */,
+				28753769263072C500221E05 /* View */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
+		28753767263072C500221E05 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				287537602630725300221E05 /* QPTestViewController.h */,
+				287537612630725300221E05 /* QPTestViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		28753768263072C500221E05 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2875375A26282A5500221E05 /* QPNodeList.h */,
+				2875375B26282A5500221E05 /* QPNodeList.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		28753769263072C500221E05 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		28AAC9DC25937BE3005534B4 = {
 			isa = PBXGroup;
 			children = (
@@ -241,6 +282,7 @@
 				28AACAAA25938C8B005534B4 /* Fund */,
 				28AACA2A25937CE9005534B4 /* Home */,
 				28AACA3725937CE9005534B4 /* Profile */,
+				28753766263072C500221E05 /* Test */,
 				28AACA2E25937CE9005534B4 /* Network */,
 				28AACA3B25937CE9005534B4 /* Lib */,
 				28AACA4025937CE9005534B4 /* Tool */,
@@ -271,8 +313,8 @@
 		28AACA2C25937CE9005534B4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				28E3FFB725A6F9E70063415D /* QPModuleModel.h */,
-				28E3FFB825A6F9E70063415D /* QPModuleModel.m */,
+				287C225725AF4FBA00760B9A /* QPModuleModel.h */,
+				287C225625AF4FBA00760B9A /* QPModuleModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -280,8 +322,8 @@
 		28AACA2D25937CE9005534B4 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				28E3FFB125A6F6AB0063415D /* QPModuleCell.h */,
-				28E3FFB225A6F6AB0063415D /* QPModuleCell.m */,
+				287C225C25AF4FD600760B9A /* QPModuleCell.h */,
+				287C225D25AF4FD700760B9A /* QPModuleCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -332,8 +374,8 @@
 		28AACA3925937CE9005534B4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				28E3FFA125A46F1A0063415D /* QPOptionModel.h */,
-				28E3FFA225A46F1A0063415D /* QPOptionModel.m */,
+				287C226325AF4FF100760B9A /* QPOptionModel.h */,
+				287C226225AF4FF100760B9A /* QPOptionModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -341,8 +383,8 @@
 		28AACA3A25937CE9005534B4 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				28E3FF9825A467EB0063415D /* QPOptionMaskView.h */,
-				28E3FF9925A467EB0063415D /* QPOptionMaskView.m */,
+				287C226825AF4FF800760B9A /* QPOptionMaskView.h */,
+				287C226925AF4FF800760B9A /* QPOptionMaskView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -737,13 +779,18 @@
 				28AACA7A25938A2F005534B4 /* UIView+Frame.m in Sources */,
 				28AACA9825938AEA005534B4 /* QPBaseModel.m in Sources */,
 				28AACA8D25938AD3005534B4 /* QPBaseNavController.m in Sources */,
+				287C226A25AF4FF800760B9A /* QPOptionMaskView.m in Sources */,
+				287537622630725300221E05 /* QPTestViewController.m in Sources */,
 				28AACA7B25938A2F005534B4 /* NSData+Hex.m in Sources */,
 				28AACA8E25938AD3005534B4 /* QPBaseViewController.m in Sources */,
+				287C226425AF4FF100760B9A /* QPOptionModel.m in Sources */,
 				28E56BAA2595874C0000CF08 /* QPFundListModel.m in Sources */,
 				2830454F2599BEA300FC53A9 /* NSString+Pinyin.m in Sources */,
 				28E56BA3259488D60000CF08 /* QPFundCompanyModel.m in Sources */,
+				2875375C26282A5500221E05 /* QPNodeList.m in Sources */,
 				28AACA7925938A2F005534B4 /* QPCacheHelper.m in Sources */,
 				28AACAB025938CC5005534B4 /* QPFundViewController.m in Sources */,
+				287C225825AF4FBA00760B9A /* QPModuleModel.m in Sources */,
 				28AACA4225937CE9005534B4 /* SceneDelegate.m in Sources */,
 				28AACA7C25938A2F005534B4 /* UIColor+Random.m in Sources */,
 				28AACA4325937CE9005534B4 /* main.m in Sources */,
@@ -755,12 +802,9 @@
 				28AACAB825938CD3005534B4 /* QPFundModel.m in Sources */,
 				28589EBB25A84E4C00EF3052 /* NSDate+Format.m in Sources */,
 				28AACAB925938CD3005534B4 /* QPFundCellFrame.m in Sources */,
-				28E3FFB925A6F9E70063415D /* QPModuleModel.m in Sources */,
 				28AACAA025938B14005534B4 /* QPProfileViewController.m in Sources */,
-				28E3FFA325A46F1A0063415D /* QPOptionModel.m in Sources */,
-				28E3FF9A25A467EB0063415D /* QPOptionMaskView.m in Sources */,
 				28AACA8325938AB0005534B4 /* QPHTTPManager.m in Sources */,
-				28E3FFB325A6F6AB0063415D /* QPModuleCell.m in Sources */,
+				287C225E25AF4FD700760B9A /* QPModuleCell.m in Sources */,
 				28AACABF25938CDA005534B4 /* QPFundCell.m in Sources */,
 				2830456A259AC4E900FC53A9 /* QPFundTableView.m in Sources */,
 				28AACA4425937CE9005534B4 /* AppDelegate.m in Sources */,
