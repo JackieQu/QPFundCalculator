@@ -110,7 +110,7 @@
 
 - (void)requestWithMethod:(HTTPRequestMethod)method path:(NSString *)path params:(NSDictionary *)params prepare:(PrepareBlock)prepare success:(SuccessBlock)success failure:(FailureBlock)failure noAlert:(BOOL)noAlert {
     
-    if (self.isReachable) {
+//    if (self.isReachable) {
         
         self.responseType = JSON;
         
@@ -145,23 +145,23 @@
                 break;
         }
         
-    } else {
-        
-        if (failure) {
-            NSError *error = [NSError errorWithDomain:@"isNotReachable" code:1000 userInfo:nil];
-            UIViewController *rootVC = [[[UIApplication sharedApplication] windows].firstObject rootViewController];
-            if (noAlert ||
-                ![[NSThread currentThread] isMainThread] ||
-                rootVC.presentedViewController) {
-                failure(nil, error);
-                return;
-            }
-            
-            [rootVC presentViewController:self.alertVC animated:YES completion:^{
-                failure(nil, error);
-            }];
-        }
-    }
+//    } else {
+//
+//        if (failure) {
+//            NSError *error = [NSError errorWithDomain:@"isNotReachable" code:1000 userInfo:nil];
+//            UIViewController *rootVC = [[[UIApplication sharedApplication] windows].firstObject rootViewController];
+//            if (noAlert ||
+//                ![[NSThread currentThread] isMainThread] ||
+//                rootVC.presentedViewController) {
+//                failure(nil, error);
+//                return;
+//            }
+//
+//            [rootVC presentViewController:self.alertVC animated:YES completion:^{
+//                failure(nil, error);
+//            }];
+//        }
+//    }
 }
 
 @end

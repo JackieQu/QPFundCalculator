@@ -13,6 +13,7 @@
 		28589EBB25A84E4C00EF3052 /* NSDate+Format.m in Sources */ = {isa = PBXBuildFile; fileRef = 28589EBA25A84E4C00EF3052 /* NSDate+Format.m */; };
 		2875375C26282A5500221E05 /* QPNodeList.m in Sources */ = {isa = PBXBuildFile; fileRef = 2875375B26282A5500221E05 /* QPNodeList.m */; };
 		287537622630725300221E05 /* QPTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 287537612630725300221E05 /* QPTestViewController.m */; };
+		2875377C2635910200221E05 /* QPCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2875377B2635910200221E05 /* QPCycleScrollView.m */; };
 		287C225825AF4FBA00760B9A /* QPModuleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 287C225625AF4FBA00760B9A /* QPModuleModel.m */; };
 		287C225E25AF4FD700760B9A /* QPModuleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 287C225D25AF4FD700760B9A /* QPModuleCell.m */; };
 		287C226425AF4FF100760B9A /* QPOptionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 287C226225AF4FF100760B9A /* QPOptionModel.m */; };
@@ -83,6 +84,8 @@
 		2875375B26282A5500221E05 /* QPNodeList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QPNodeList.m; sourceTree = "<group>"; };
 		287537602630725300221E05 /* QPTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QPTestViewController.h; sourceTree = "<group>"; };
 		287537612630725300221E05 /* QPTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QPTestViewController.m; sourceTree = "<group>"; };
+		2875377A2635910200221E05 /* QPCycleScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QPCycleScrollView.h; sourceTree = "<group>"; };
+		2875377B2635910200221E05 /* QPCycleScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QPCycleScrollView.m; sourceTree = "<group>"; };
 		287C225625AF4FBA00760B9A /* QPModuleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QPModuleModel.m; sourceTree = "<group>"; };
 		287C225725AF4FBA00760B9A /* QPModuleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QPModuleModel.h; sourceTree = "<group>"; };
 		287C225C25AF4FD600760B9A /* QPModuleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QPModuleCell.h; sourceTree = "<group>"; };
@@ -324,6 +327,8 @@
 			children = (
 				287C225C25AF4FD600760B9A /* QPModuleCell.h */,
 				287C225D25AF4FD700760B9A /* QPModuleCell.m */,
+				2875377A2635910200221E05 /* QPCycleScrollView.h */,
+				2875377B2635910200221E05 /* QPCycleScrollView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -795,6 +800,7 @@
 				28AACA7C25938A2F005534B4 /* UIColor+Random.m in Sources */,
 				28AACA4325937CE9005534B4 /* main.m in Sources */,
 				283045552599D59800FC53A9 /* NSURL+Param.m in Sources */,
+				2875377C2635910200221E05 /* QPCycleScrollView.m in Sources */,
 				28E56BB125958EDD0000CF08 /* QPFundHandler.m in Sources */,
 				28AACA9A25938AEA005534B4 /* QPBaseTabBarModel.m in Sources */,
 				28AACAA625938B1E005534B4 /* QPHomeViewController.m in Sources */,

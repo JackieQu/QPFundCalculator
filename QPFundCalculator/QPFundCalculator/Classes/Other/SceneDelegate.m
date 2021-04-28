@@ -9,6 +9,10 @@
 #import "AppDelegate.h"
 #import "QPBaseTabBarController.h"
 
+#ifdef DEBUG
+#import <DoraemonKit/DoraemonManager.h>
+#endif
+
 @interface SceneDelegate ()
 
 @end
@@ -27,6 +31,10 @@
     QPBaseTabBarController *tabBarVC = [[QPBaseTabBarController alloc] init];
     self.window.rootViewController = tabBarVC;
     [self.window makeKeyAndVisible];
+    
+    #ifdef DEBUG
+    [[DoraemonManager shareInstance] installWithPid:@"8be56fe5f40c7672ef69c36c9d12053c"];
+    #endif
 }
 
 

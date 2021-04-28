@@ -14,9 +14,42 @@ PODS:
   - AFNetworking/Serialization (4.0.1)
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
+  - CocoaLumberjack (3.7.0):
+    - CocoaLumberjack/Core (= 3.7.0)
+  - CocoaLumberjack/Core (3.7.0)
+  - DoraemonKit/Core (3.0.4):
+    - FMDB
+    - GCDWebServer
+    - GCDWebServer/WebDAV
+    - GCDWebServer/WebUploader
+  - DoraemonKit/WithDatabase (3.0.4):
+    - DoraemonKit/Core
+    - YYDebugDatabase
+  - DoraemonKit/WithGPS (3.0.4):
+    - DoraemonKit/Core
+  - DoraemonKit/WithLoad (3.0.4):
+    - DoraemonKit/Core
+  - DoraemonKit/WithLogger (3.0.4):
+    - CocoaLumberjack
+    - DoraemonKit/Core
+  - DoraemonKit/WithMLeaksFinder (3.0.4):
+    - DoraemonKit/Core
+    - FBRetainCycleDetector
+  - DoraemonKit/WithWeex (3.0.4):
+    - DoraemonKit/Core
+    - WeexSDK
+    - WXDevtool
+  - FBRetainCycleDetector (0.1.4)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
+  - GCDWebServer (3.5.4):
+    - GCDWebServer/Core (= 3.5.4)
+  - GCDWebServer/Core (3.5.4)
+  - GCDWebServer/WebDAV (3.5.4):
+    - GCDWebServer/Core
+  - GCDWebServer/WebUploader (3.5.4):
+    - GCDWebServer/Core
   - IQKeyboardManager (6.5.6)
   - Masonry (1.1.0)
   - MBProgressHUD (1.2.0)
@@ -25,10 +58,25 @@ PODS:
   - SDWebImage (5.10.0):
     - SDWebImage/Core (= 5.10.0)
   - SDWebImage/Core (5.10.0)
+  - SocketRocket (0.5.1)
   - SVProgressHUD (2.2.5)
+  - WeexSDK (0.28.0)
+  - WXDevtool (0.24.0):
+    - SocketRocket
+    - WeexSDK
+  - YYDebugDatabase (2.1.0):
+    - FMDB
+    - GCDWebServer
 
 DEPENDENCIES:
   - AFNetworking
+  - DoraemonKit/Core (~> 3.0.4)
+  - DoraemonKit/WithDatabase (~> 3.0.4)
+  - DoraemonKit/WithGPS (~> 3.0.4)
+  - DoraemonKit/WithLoad (~> 3.0.4)
+  - DoraemonKit/WithLogger (~> 3.0.4)
+  - DoraemonKit/WithMLeaksFinder (~> 3.0.4)
+  - DoraemonKit/WithWeex (~> 3.0.4)
   - FMDB
   - IQKeyboardManager
   - Masonry
@@ -41,26 +89,42 @@ DEPENDENCIES:
 SPEC REPOS:
   https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
     - AFNetworking
+    - CocoaLumberjack
+    - DoraemonKit
+    - FBRetainCycleDetector
     - FMDB
+    - GCDWebServer
     - IQKeyboardManager
     - Masonry
     - MBProgressHUD
     - MJExtension
     - MJRefresh
     - SDWebImage
+    - SocketRocket
     - SVProgressHUD
+    - WeexSDK
+    - WXDevtool
+    - YYDebugDatabase
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
+  CocoaLumberjack: e8955b9d337ac307103b0a34fd141c32f27e53c5
+  DoraemonKit: b507a1500667024070f248d648632a3f7bbb6044
+  FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  GCDWebServer: 2c156a56c8226e2d5c0c3f208a3621ccffbe3ce4
   IQKeyboardManager: 2a6e97afdafc7becf0cb17a9a8d795e3a980717f
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJExtension: d9b9c74cbdeb724c1e9ecbb157b318276e62e876
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
   SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
+  SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  WeexSDK: 78861d2f8b78f67e30580c15a54f5b420456db39
+  WXDevtool: 95b70c73c06fc3299d65bd53ba4b3e0b0087f3cb
+  YYDebugDatabase: e684a7f79fca2e3673a23347cefb822f911f3124
 
-PODFILE CHECKSUM: 5ec58a00ff388434d8b8407caa2eca5e4a83b560
+PODFILE CHECKSUM: 7251fb23b196b496e739d695a8e8bb98252b1868
 
 COCOAPODS: 1.10.0

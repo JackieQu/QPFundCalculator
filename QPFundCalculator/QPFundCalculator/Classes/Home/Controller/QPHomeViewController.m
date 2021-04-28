@@ -9,13 +9,15 @@
 #import "QPModuleCell.h"
 #import "NSDate+Format.h"
 #import "QPFundHandler.h"
+#import "QPCycleScrollView.h"
 
-@interface QPHomeViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface QPHomeViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, QPCycleScrollViewDelegate>
 
 @property (nonatomic, strong) UIButton *btn;
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray <QPModuleModel *> *dataList;
+@property (nonatomic, strong) QPCycleScrollView *scrollView;
 
 @end
 
@@ -88,14 +90,29 @@
     return _dataList;
 }
 
+- (QPCycleScrollView *)scrollView {
+    if (!_scrollView) {
+        _scrollView = [[QPCycleScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 9 / 16)];
+        _scrollView.cycleDelegate = self;
+    }
+    return _scrollView;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.btn];
 
     [self.view addSubview:self.collectionView];
     
-    DLog(@"%f", STATUS_BAR_HEIGHT);
+    self.scrollView.dataList = @[
+        @"https://cn.bing.com/th?id=OHR.AdelieDiving_ZH-CN8185853655_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp",
+        @"https://cn.bing.com/th?id=OHR.ChollaGarden_ZH-CN8015525891_UHD.jpg&rf=LaDigue_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4",
+        @"https://cn.bing.com/th?id=OHR.MossyCanyon_ZH-CN7931722740_UHD.jpg&rf=LaDigue_UHD.jpg&pid=hp&w=3840&h=2160&rs=1&c=4",
+    ];
+    self.scrollView.totalPage = self.scrollView.dataList.count;
+    [self.scrollView loadCycleData];
+    [self.scrollView openTimer];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -147,6 +164,7 @@
         headerView.backgroundColor = kColorRGB(34, 123, 251);
 //        self.btn.center = headerView.center;
 //        [headerView addSubview:self.btn];
+        [headerView addSubview:self.scrollView];
         return headerView;
     }
     return nil;
@@ -159,5 +177,15 @@
 //    }
 //    return CGSizeZero;
 //}
+
+#pragma mark - QPCycleScrollViewDelegate
+
+- (void)cycleScrollView:(QPCycleScrollView *)scrollView currentPage:(NSInteger)currentPage {
+//    DLog(@"%ld", (long)currentPage);
+}
+
+- (void)cycleScrollView:(QPCycleScrollView *)scrollView selectedIndex:(NSInteger)selectedIndex {
+    DLog(@"别点了别点了 - %ld", (long)selectedIndex);
+}
 
 @end
